@@ -1,8 +1,8 @@
 <script lang="ts">
-  import Section from "./lib/section.svelte";
+  import Section from "./section.svelte";
 </script>
 
-<main class="container flex flex-col h-full max-w-3xl">
+<main class="container flex flex-col h-full max-w-3xl mx-auto">
   <section id="heading" class="flex flex-col justify-center">
     <h1
       class="p-1 text-4xl font-bold text-center border-b-2 border-black dark:border-gray-500"

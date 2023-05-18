@@ -1,8 +1,14 @@
-<!DOCTYPE html>
+---
+import "../styles/global.css";
+import Resume from "../lib/resume.svelte";
+---
+
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
     <title>Riley Smith | Resume</title>
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Riley Smith | Resume" />
@@ -13,7 +19,6 @@
     <meta name="darkreader-lock" />
   </head>
   <body class="bg-white dark:bg-slate-950 dark:text-white">
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+    <Resume />
   </body>
 </html>
