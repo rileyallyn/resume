@@ -4,11 +4,10 @@
 
 <main class="container flex flex-col h-full max-w-3xl mx-auto">
   <section id="heading" class="flex flex-col justify-center">
-    <h1
-      class="p-1 text-4xl font-bold text-center border-b-2 border-black dark:border-gray-500"
-    >
+    <h1 class="p-1 mx-auto text-4xl font-bold text-center title">
       Riley Smith
     </h1>
+    <div class="border-b-2 border-black dark:border-gray-500" />
     <ol
       class="flex flex-col mx-auto space-x-1 text-center sm:flex-row"
       id="pipe-list"
@@ -66,12 +65,14 @@
     </ol>
   </Section>
   <Section id="education" title="Education">
-    <p
-      class="text-lg text-left border-b-2 border-blue-600 sm:font-bold sm:border-b-0"
+    <ol
+      class="flex flex-col text-lg font-bold sm:flex-row sm:space-x-1"
+      id="pipe-list"
     >
-      Walla Walla University | College Place, WA | Expected Graduation: June
-      2026
-    </p>
+      <li>Walla Walla University</li>
+      <li>College Place, WA</li>
+      <li>Expected Graduation: June 2026</li>
+    </ol>
     <p class="mt-1 italic font-normal text-left text-md sm:mt-0">
       Bachelor of Science, Computer Science | GPA: 3.5
     </p>
@@ -85,40 +86,42 @@
   <Section id="experience" title="Experience">
     <ol class="flex flex-col mt-1 text-left spacing-y-1">
       <li>
-        <p class="font-bold">
-          Founder, Lead Software Developer | Velvox Labs | October 2022 -
-          Current
-        </p>
+        <ol class="inline-flex flex-row flex-wrap space-x-1 font-bold" id="pipe-list-bp">
+          <li>Founder, Lead Software Developer</li>
+          <li>Velvox Labs</li>
+          <li>October 2022 - Current</li>
+        </ol>
         <ul class="p-1">
           <li>
-            <p class="">- Delivered a dynamic web application using Next.JS for a client</p>
-            <p class="">- Developing a next generation email client</p>
-            <p class="">- Built a discord bot in golang, serving thousands of users</p>
+            <p>
+              - Delivered a dynamic web application using Next.JS for a client
+            </p>
+            <p>- Developing a next generation email client</p>
+            <p>- Built a discord bot in golang, serving thousands of users</p>
           </li>
         </ul>
       </li>
       <li>
-        <p class="font-bold">
-          Live Sound Engineer | Walla Walla University | September 2022 -
-          Current
-        </p>
+        <ol class="inline-flex flex-row flex-wrap space-x-1 font-bold" id="pipe-list-bp">
+          <li>Live Sound Engineer</li>
+          <li>Walla Walla University</li>
+          <li>September 2022 - Current</li>
+        </ol>
         <ul class="p-1">
           <li>
-            <p class="">
-              - Running Live Sound for various events across the campus
-            </p>
-            <p class="">- Assisted in producing a concert production</p>
-            <p class="">
-              - Trained other employees in projection, audio, and lighting
-            </p>
+            <p>- Running Live Sound for various events across the campus</p>
+            <p>- Assisted in producing a concert production</p>
+            <p>- Trained other employees in projection, audio, and lighting</p>
           </li>
         </ul>
       </li>
       <li>
-        <p class="font-bold">
-          Video Producer, A/V Support | Pine Springs Ranch | Summers 2022-2023 |
-          Mountain Center, CA
-        </p>
+        <ol class="inline-flex flex-row flex-wrap space-x-1 font-bold" id="pipe-list-bp">
+          <li>Video Producer, A/V Support</li>
+          <li>Pine Springs Ranch</li>
+          <li>Summers 2022-2023</li>
+          <li>Mountain Center, CA</li>
+        </ol>
         <ul class="p-1">
           <li>
             <p>- Produced weekly "recap" videos for the summer camp</p>

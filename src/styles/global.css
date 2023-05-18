@@ -3,7 +3,7 @@
 @tailwind utilities; */
 
 :root {
-  font-family:  Helvetica, Inter, system-ui, Avenir, Arial, sans-serif;
+  font-family: Helvetica, Inter, system-ui, Avenir, Arial, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -29,16 +29,83 @@ body {
 }
 
 @media (min-width: 640px) {
-    #comma-list li::after {
-      content: ", ";
-    }
-    #comma-list li:last-child::after {
-      content: "";
-    }
-    #pipe-list li::after {
-      content: " | ";
-    }
-    #pipe-list li:last-child::after {
-      content: "";
-    }
+  #comma-list li::after {
+    content: ", ";
+  }
+  #comma-list li:last-child::after {
+    content: "";
+  }
+  #pipe-list li::after {
+    content: " | ";
+  }
+  #pipe-list li:last-child::after {
+    content: "";
+  }
+}
+#pipe-list-bp li::after {
+  content: " | ";
+}
+#pipe-list-bp li:last-child::after {
+  content: "";
+}
+@media (min-width: 768px) {
+  .title:hover {
+    animation-name: coolTextThing;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-out;
+  }
+}
+
+@media (max-width: 767px) {
+  .title {
+    animation-name: coolTextThing;
+    animation-duration: 3s;
+    animation-timing-function: ease-out;
+    animation-iteration-count: infinite;
+  }
+}
+
+@keyframes coolTextThing {
+  0% {
+    font-family: "Courier New", Courier, monospace;
+    font-style: italic;
+  }
+  10% {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-style: oblique;
+  }
+  20% {
+    font-family: "Times New Roman", Times, serif;
+  }
+  30% {
+    font-family: Georgia, "Times New Roman", Times, serif;
+  }
+  40% {
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    font-weight: bold;
+  }
+  50% {
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-weight: bold;
+  }
+  60% {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+  }
+  70% {
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-style: oblique;
+  }
+  80% {
+    font-family: "Lucida Console", Monaco, monospace;
+    font-weight: lighter;
+  }
+  90% {
+    font-family: "MS Sans Serif", Geneva, sans-serif;
+    font-weight: 900;
+    font-style: italic;
+  }
+  100% {
+    font-family: "MS Serif", "New York", sans-serif;
+  }
 }
