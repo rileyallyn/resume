@@ -67,6 +67,10 @@ body {
 
 @keyframes coolTextThing {
   0% {
+    font-family: Helvetica, sans-serif;
+    font-style: normal;
+  }
+  5% {
     font-family: "Courier New", Courier, monospace;
     font-style: italic;
   }

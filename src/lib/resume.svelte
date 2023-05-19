@@ -4,7 +4,7 @@
 
 <main class="container flex flex-col h-full max-w-3xl mx-auto">
   <section id="heading" class="flex flex-col justify-center">
-    <h1 class="p-1 mx-auto text-4xl font-bold text-center title">
+    <h1 class="p-1 mx-auto text-4xl font-bold text-center title font-sans">
       Riley Smith
     </h1>
     <div class="border-b-2 border-black dark:border-gray-500" />
