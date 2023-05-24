@@ -86,7 +86,10 @@
   <Section id="experience" title="Experience">
     <ol class="flex flex-col mt-1 text-left spacing-y-1">
       <li>
-        <ol class="inline-flex flex-row flex-wrap space-x-1 font-bold" id="pipe-list-bp">
+        <ol
+          class="inline-flex flex-row flex-wrap space-x-1 font-bold"
+          id="pipe-list-bp"
+        >
           <li>Founder, Lead Software Developer</li>
           <li>Velvox Labs</li>
           <li>October 2022 - Current</li>
@@ -102,21 +105,38 @@
         </ul>
       </li>
       <li>
-        <ol class="inline-flex flex-row flex-wrap space-x-1 font-bold" id="pipe-list-bp">
+        <ol
+          class="inline-flex flex-row flex-wrap space-x-1 font-bold"
+          id="pipe-list-bp"
+        >
           <li>Live Sound Engineer</li>
           <li>Walla Walla University</li>
           <li>September 2022 - Current</li>
         </ol>
         <ul class="p-1">
           <li>
-            <p>- Running Live Sound for various events across the campus</p>
-            <p>- Assisted in producing a concert production</p>
-            <p>- Trained other employees in projection, audio, and lighting</p>
+            <p>
+              - Successfully assisted in planning and producing a concert-level
+              event, utilizing strong communication skills, and an attention to
+              detail to ensure a seamless and unforgettable experience for
+              attendees.
+            </p>
+            <p>
+              - Ran Live Sound for various events across the different campus
+              venues
+            </p>
+            <p>
+              - Trained employees in projection, audio, and lighting across
+              different venues
+            </p>
           </li>
         </ul>
       </li>
       <li>
-        <ol class="inline-flex flex-row flex-wrap space-x-1 font-bold" id="pipe-list-bp">
+        <ol
+          class="inline-flex flex-row flex-wrap space-x-1 font-bold"
+          id="pipe-list-bp"
+        >
           <li>Video Producer, A/V Support</li>
           <li>Pine Springs Ranch</li>
           <li>Summers 2022-2023</li>
@@ -127,6 +147,24 @@
             <p>- Produced weekly "recap" videos for the summer camp</p>
             <p>- Supported the nightly drama programs with audio and visual</p>
             <p>- Created content for the Summer Camps social media</p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <ol
+          class="inline-flex flex-row flex-wrap space-x-1 font-bold"
+          id="pipe-list-bp"
+        >
+          <li>System Administrator, Webmaster, A/V Support</li>
+          <li>Mesa Grande Academy</li>
+          <li>2019-2022</li>
+          <li>Calimesa, CA</li>
+        </ol>
+        <ul class="p-1">
+          <li>
+            <p>- Helped to maintain the on premise servers</p>
+            <p>- Decreased loading times for the landing page</p>
+            <p>- Oversaw the upgrade from Windows 7 to Windows 10</p>
           </li>
         </ul>
       </li>
