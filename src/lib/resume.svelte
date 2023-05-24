@@ -99,8 +99,11 @@
             <p>
               - Delivered a dynamic web application using Next.JS for a client
             </p>
-            <p>- Developing a next generation email client</p>
-            <p>- Built a discord bot in golang, serving thousands of users</p>
+            <p>- Developed a next generation email client</p>
+            <p>
+              - Built an application using the Discord API in GoLang, serving
+              thousands of users per day
+            </p>
           </li>
         </ul>
       </li>
@@ -119,7 +122,7 @@
               - Successfully assisted in planning and producing a concert-level
               event, utilizing strong communication skills, and an attention to
               detail to ensure a seamless and unforgettable experience for
-              attendees.
+              attendees
             </p>
             <p>
               - Ran Live Sound for various events across the different campus
@@ -145,7 +148,10 @@
         <ul class="p-1">
           <li>
             <p>- Produced weekly "recap" videos for the summer camp</p>
-            <p>- Supported the nightly drama programs with audio and visual</p>
+            <p>
+              - Supported the nightly drama programs with audio and visual
+              features
+            </p>
             <p>- Created content for the Summer Camps social media</p>
           </li>
         </ul>
