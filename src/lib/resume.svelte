@@ -59,7 +59,7 @@
           <li>Adobe Suite (Premiere Pro, Photoshop, Lightroom)</li>
           <li>Visual Studio</li>
           <li>VSCode</li>
-          <li>Intellij IDEA</li>
+          <li>JetBrains suite</li>
         </ul>
       </li>
     </ol>
