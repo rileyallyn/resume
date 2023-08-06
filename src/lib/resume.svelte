@@ -33,21 +33,15 @@
   <Section id="skills" title="Skills">
     <ol class="flex flex-col gap-1 mt-2">
       <li class="flex flex-col">
-        <h3 class="font-bold text-left text-md">Technologies:</h3>
+        <h3 class="font-bold text-left text-md">Key Technologies:</h3>
         <ul
           id="comma-list"
           class="flex flex-col pl-1 ml-5 text-left list-disc sm:list-none sm:space-x-1 sm:flex-row sm:ml-0"
         >
-          <li>JavaScript</li>
           <li>TypeScript</li>
-          <li>HTML</li>
-          <li>CSS</li>
-          <li>ReactJS</li>
-          <li>Next.JS</li>
-          <li>Svelte</li>
-          <li>SvelteKit</li>
           <li>GoLang</li>
           <li>Rust</li>
+          <li>Java</li>
         </ul>
       </li>
       <li class="flex flex-col">
@@ -56,10 +50,9 @@
           id="comma-list"
           class="flex flex-col pl-1 ml-5 text-left list-disc sm:list-none sm:space-x-1 sm:flex-row sm:ml-0"
         >
-          <li>Adobe Suite (Premiere Pro, Photoshop, Lightroom)</li>
           <li>Visual Studio</li>
-          <li>VSCode</li>
-          <li>JetBrains suite</li>
+          <li>Visual Studio Code</li>
+          <li>JetBrains Suite</li>
         </ul>
       </li>
     </ol>
@@ -140,27 +133,6 @@
           class="inline-flex flex-row flex-wrap space-x-1 font-bold"
           id="pipe-list-bp"
         >
-          <li>Video Producer, A/V Support</li>
-          <li>Pine Springs Ranch</li>
-          <li>Summers 2022-2023</li>
-          <li>Mountain Center, CA</li>
-        </ol>
-        <ul class="p-1">
-          <li>
-            <p>- Produced weekly "recap" videos for the summer camp</p>
-            <p>
-              - Supported the nightly drama programs with audio and visual
-              features
-            </p>
-            <p>- Created content for the Summer Camps social media</p>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <ol
-          class="inline-flex flex-row flex-wrap space-x-1 font-bold"
-          id="pipe-list-bp"
-        >
           <li>System Administrator, Webmaster, A/V Support</li>
           <li>Mesa Grande Academy</li>
           <li>2019-2022</li>
@@ -168,9 +140,9 @@
         </ol>
         <ul class="p-1">
           <li>
-            <p>- Helped to maintain the on premise servers</p>
-            <p>- Decreased loading times for the landing page</p>
-            <p>- Oversaw the upgrade from Windows 7 to Windows 10</p>
+            <p>- Helped to maintain the on-premise servers</p>
+            <p>- Decreased loading time by 2x for the landing page</p>
+            <p>- Oversaw the upgrade from Windows 7 to Windows 10 on all computers on campus</p>
           </li>
         </ul>
       </li>
