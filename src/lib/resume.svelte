@@ -36,30 +36,31 @@
         <h3 class="font-bold text-left text-md">Technologies:</h3>
         <ul
           id="comma-list"
-          class="flex flex-col pl-1 ml-5 text-left list-disc sm:list-none sm:space-x-1 sm:flex-row sm:ml-0"
+          class="flex flex-col pl-1 ml-5 text-left list-disc sm:list-none sm:space-x-1 sm:flex-row sm:ml-0 sm:flex-wrap"
         >
           <li>JavaScript</li>
           <li>TypeScript</li>
           <li>HTML</li>
           <li>CSS</li>
           <li>ReactJS</li>
-          <li>Next.JS</li>
+          <li>NextJS</li>
           <li>Svelte</li>
           <li>SvelteKit</li>
           <li>GoLang</li>
-          <li>Rust</li>
+          <li>Git/GitHub</li>
         </ul>
       </li>
       <li class="flex flex-col">
         <h3 class="font-bold text-left text-md">Software:</h3>
         <ul
           id="comma-list"
-          class="flex flex-col pl-1 ml-5 text-left list-disc sm:list-none sm:space-x-1 sm:flex-row sm:ml-0"
+          class="flex flex-col pl-1 ml-5 text-left list-disc sm:list-none sm:space-x-1 sm:flex-row sm:ml-0 sm:flex-wrap"
         >
           <li>Adobe Suite (Premiere Pro, Photoshop, Lightroom)</li>
           <li>Visual Studio</li>
-          <li>VSCode</li>
-          <li>JetBrains suite</li>
+          <li>Visual Studio Code</li>
+          <li>JetBrains Suite</li>
+          <li class="!mx-0">Figma</li>
         </ul>
       </li>
     </ol>
@@ -80,6 +81,7 @@
       <p class="italic font-bold">Relevant Courses:</p>
       <ul>
         <li class="p-1">- Fundamentals of Programming I & II</li>
+        <li class="p-1">- Computer Organization and Assembly Language</li>
       </ul>
     </div>
   </Section>
@@ -97,17 +99,19 @@
         <ul class="p-1">
           <li>
             <p>
-              - Delivered a dynamic web application using Next.JS for a client
+              - Designed and Built a landing page/CMS based web application in Next.JS for a client
             </p>
-            <p>- Developed a next generation email client</p>
             <p>
               - Built an application using the Discord API in GoLang, serving
               thousands of users per day
             </p>
+            <p>
+              - Built a interactive website for managing my resume and portfolio
+            </p>
           </li>
         </ul>
       </li>
-      <li>
+      <!-- <li>
         <ol
           class="inline-flex flex-row flex-wrap space-x-1 font-bold"
           id="pipe-list-bp"
@@ -134,8 +138,8 @@
             </p>
           </li>
         </ul>
-      </li>
-      <li>
+      </li> -->
+      <!-- <li>
         <ol
           class="inline-flex flex-row flex-wrap space-x-1 font-bold"
           id="pipe-list-bp"
@@ -155,22 +159,22 @@
             <p>- Created content for the Summer Camps social media</p>
           </li>
         </ul>
-      </li>
+      </li> -->
       <li>
         <ol
           class="inline-flex flex-row flex-wrap space-x-1 font-bold"
           id="pipe-list-bp"
         >
-          <li>System Administrator, Webmaster, A/V Support</li>
+          <li>System Administrator, Webmaster</li>
           <li>Mesa Grande Academy</li>
           <li>2019-2022</li>
           <li>Calimesa, CA</li>
         </ol>
         <ul class="p-1">
           <li>
-            <p>- Helped to maintain the on premise servers</p>
-            <p>- Decreased loading times for the landing page</p>
-            <p>- Oversaw the upgrade from Windows 7 to Windows 10</p>
+            <p>- Helped to maintain the on premise Active Domain servers</p>
+            <p>- Oversaw the upgrade of on campus workstations from Windows 7 to Windows 10</p>
+            <p>- Increased page performance by optimizing WordPress plugins/bundle</p>
           </li>
         </ul>
       </li>
