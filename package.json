@@ -1,7 +1,9 @@
 {
   "name": "resume-astro",
   "author": {
-    "name": "Riley Smith"
+    "name": "Riley Smith",
+    "email": "riley@rileysmith.me",
+    "url": "https://resume.rileyy.dev"
   },
   "type": "module",
   "version": "1.0.0",
