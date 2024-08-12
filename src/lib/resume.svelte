@@ -42,7 +42,7 @@
           <li>TypeScript</li>
           <li>HTML</li>
           <li>CSS</li>
-          <li>ReactJS</li>
+          <li>React.JS</li>
           <li>Next.JS</li>
           <li>Svelte</li>
           <li>SvelteKit</li>
@@ -58,8 +58,8 @@
         >
           <li>Adobe Suite (Premiere Pro, Photoshop, Lightroom)</li>
           <li>Visual Studio</li>
-          <li>VSCode</li>
-          <li>JetBrains suite</li>
+          <li>Visual Studio Code</li>
+          <li>JetBrains Suite</li>
         </ul>
       </li>
     </ol>
@@ -79,7 +79,9 @@
     <div class="mt-1 text-left">
       <p class="italic font-bold">Relevant Courses:</p>
       <ul>
-        <li class="p-1">- Fundamentals of Programming I & II</li>
+        <li class="">- Fundamentals of Programming I & II</li>
+        <li class="">- Sequential and Parallel Data Structures & Algorithms</li>
+        <li class="">- Computer Organization & Assembly Language</li>
       </ul>
     </div>
   </Section>
@@ -90,19 +92,19 @@
           class="inline-flex flex-row flex-wrap space-x-1 font-bold"
           id="pipe-list-bp"
         >
-          <li>Founder, Lead Software Developer</li>
-          <li>Velvox Labs</li>
-          <li>October 2022 - Current</li>
+          <li>Webhead</li>
+          <li>ASWWU</li>
+          <li>May 2024 - Current</li>
         </ol>
         <ul class="p-1">
           <li>
             <p>
-              - Delivered a dynamic web application using Next.JS for a client
+              - Maintained the ASWWU WordPress website, ensuring it was
+              accessible and responsive.
             </p>
-            <p>- Developed a next generation email client</p>
             <p>
-              - Built an application using the Discord API in GoLang, serving
-              thousands of users per day
+              - Maintained the ASWWU 'Mask', which is a custom built student
+              directory, made using the Angular framework.
             </p>
           </li>
         </ul>
@@ -112,7 +114,30 @@
           class="inline-flex flex-row flex-wrap space-x-1 font-bold"
           id="pipe-list-bp"
         >
-          <li>Live Sound Engineer</li>
+          <li>Founder, Lead Software Developer</li>
+          <li>Velvox Labs</li>
+          <li>October 2022 - April 2024</li>
+        </ol>
+        <ul class="p-1">
+          <li>
+            <p>
+              - Delivered an interactive web application using Next.JS & Sanity
+              CMS for a client
+            </p>
+            <p>
+              - Built an application using the Discord API in GoLang, serving
+              thousands of users per day. Providing content moderation and
+              analytics for communities.
+            </p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <ol
+          class="inline-flex flex-row flex-wrap space-x-1 font-bold"
+          id="pipe-list-bp"
+        >
+          <li>Senior Live Sound Engineer</li>
           <li>Walla Walla University</li>
           <li>September 2022 - Current</li>
         </ol>
@@ -142,23 +167,26 @@
         >
           <li>Video Producer, A/V Support</li>
           <li>Pine Springs Ranch</li>
-          <li>Summers 2022-2023</li>
+          <li>Summers 2022,2023,2024</li>
           <li>Mountain Center, CA</li>
         </ol>
         <ul class="p-1">
           <li>
-            <p>- Produced weekly "recap" videos for the summer camp</p>
+            <p>- Produced weekly 'recap' videos for the summer camp</p>
             <p>
               - Supported the nightly drama programs with audio and visual
               features
             </p>
-            <p>- Created content for the Summer Camps social media</p>
+            <p>
+              - Created content for the Summer Camps social media which had a
+              cumulative engagement of over 10k views
+            </p>
           </li>
         </ul>
       </li>
-      <li>
+      <!-- <li>
         <ol
-          class="inline-flex flex-row flex-wrap space-x-1 font-bold"
+          class="inline-flex flex-row flex-wrap space-x-1 font-bold" 
           id="pipe-list-bp"
         >
           <li>System Administrator, Webmaster, A/V Support</li>
@@ -168,12 +196,14 @@
         </ol>
         <ul class="p-1">
           <li>
-            <p>- Helped to maintain the on premise servers</p>
-            <p>- Decreased loading times for the landing page</p>
+            <p>
+              - Helped to maintain the on premise servers (Active Directory)
+            </p>
+            <p>- Decreased loading times for the landing page by 20%</p>
             <p>- Oversaw the upgrade from Windows 7 to Windows 10</p>
           </li>
         </ul>
-      </li>
+      </li> -->
     </ol>
   </Section>
 </main>
