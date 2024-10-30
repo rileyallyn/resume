@@ -23,13 +23,11 @@
       </li>
     </ol>
   </section>
-  <Section id="statement" title="Professional Statement">
-    <p class="text-left">
-      As a software developer, my primary motivation is to create software that
-      is accessible for everyone. Striving to build applications that are not
-      only user-friendly, but scalable.
-    </p>
-  </Section>
+
+  <p class="text-center mt-2">
+    Motivation is to create software that is accessible for everyone. Striving
+    to build applications that are not only user-friendly, but scalable.
+  </p>
   <Section id="skills" title="Skills">
     <ol class="flex flex-col gap-1 mt-2">
       <li class="flex flex-col">
@@ -65,23 +63,25 @@
     </ol>
   </Section>
   <Section id="education" title="Education">
-    <ol
-      class="flex flex-col text-lg font-bold sm:flex-row sm:space-x-1"
-      id="pipe-list"
-    >
+    <ol class="flex flex-col font-bold sm:flex-row sm:space-x-1" id="pipe-list">
       <li>Walla Walla University</li>
       <li>College Place, WA</li>
       <li>Expected Graduation: June 2026</li>
     </ol>
     <p class="mt-1 italic font-normal text-left text-md sm:mt-0">
-      Bachelor of Science, Computer Science | GPA: 3.5
+      <span class="font-bold">Bachelor of Science, Computer Science</span> | GPA:
+      3.5
     </p>
     <div class="mt-1 text-left">
       <p class="italic font-bold">Relevant Courses:</p>
-      <ul>
-        <li class="">- Fundamentals of Programming I & II</li>
-        <li class="">- Sequential and Parallel Data Structures & Algorithms</li>
-        <li class="">- Computer Organization & Assembly Language</li>
+      <ul
+        id="comma-list"
+        class="flex flex-col pl-1 ml-5 text-left list-disc sm:list-none sm:space-x-1 sm:flex-row sm:ml-0 sm:text-nowrap sm:flex-wrap"
+      >
+        <li class="">Fundamentals of Programming I & II</li>
+        <li class="">Sequential and Parallel Data Structures & Algorithms</li>
+        <li class="">Computer Organization & Assembly Language</li>
+        <li class="">Compilers & Languages</li>
       </ul>
     </div>
   </Section>
