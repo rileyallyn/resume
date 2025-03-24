@@ -12,7 +12,7 @@
       class="flex flex-col mx-auto space-x-1 text-center sm:flex-row"
       id="pipe-list"
     >
-      <li>College Place, WA</li>
+      <li>Yucaipa, CA/College Place, WA</li>
       <li>
         <a href="https://allyn.dev">https://allyn.dev</a>
       </li>
@@ -40,7 +40,7 @@
           <li>HTML/CSS</li>
           <li>React.JS/Next.JS</li>
           <li>Svelte</li>
-          <li>GoLang</li>
+          <li>Golang</li>
           <li>Python</li>
         </ul>
       </li>
@@ -54,6 +54,7 @@
           <li>Visual Studio Code</li>
           <li>JetBrains Suite</li>
           <li>Docker/Containerization</li>
+          <li>Node.JS</li>
           <li>Git/GitHub</li>
           <li>Linux</li>
         </ul>
@@ -68,7 +69,7 @@
     </ol>
     <p class="mt-1 italic font-normal text-left text-md sm:mt-0">
       <span class="font-bold">Bachelor of Science, Computer Science</span> | GPA:
-      3.5
+      3.4
     </p>
     <div class="mt-1 text-left">
       <p class="italic font-bold">Relevant Courses:</p>
@@ -170,19 +171,19 @@
         >
           <li>Video Producer, A/V Support</li>
           <li>Pine Springs Ranch</li>
-          <li>Summers 2022,2023,2024</li>
+          <li>Summers 2024-2024</li>
           <li>Mountain Center, CA</li>
         </ol>
         <ul class="p-1">
           <li>
-            <p>- Produced weekly 'recap' videos for the summer camp</p>
-            <p>
-              - Supported the nightly drama programs with audio and visual
-              features
-            </p>
+            <!-- <p>- Produced weekly 'recap' videos for the summer camp</p> -->
             <p>
               - Created content for the Summer Camps social media which had a
               cumulative engagement of over 10k views
+            </p>
+            <p>
+              - Supported the nightly drama programs with audio and visual
+              features
             </p>
           </li>
         </ul>
