@@ -36,16 +36,12 @@
           id="comma-list"
           class="flex flex-col pl-1 ml-5 text-left list-disc sm:list-none sm:space-x-1 sm:flex-row sm:ml-0"
         >
-          <li>JavaScript</li>
-          <li>TypeScript</li>
-          <li>HTML</li>
-          <li>CSS</li>
-          <li>React.JS</li>
-          <li>Next.JS</li>
+          <li>JavaScript/TypeScript</li>
+          <li>HTML/CSS</li>
+          <li>React.JS/Next.JS</li>
           <li>Svelte</li>
-          <li>SvelteKit</li>
           <li>GoLang</li>
-          <li>Rust</li>
+          <li>Python</li>
         </ul>
       </li>
       <li class="flex flex-col">
@@ -54,10 +50,12 @@
           id="comma-list"
           class="flex flex-col pl-1 ml-5 text-left list-disc sm:list-none sm:space-x-1 sm:flex-row sm:ml-0"
         >
-          <li>Adobe Suite (Premiere Pro, Photoshop, Lightroom)</li>
           <li>Visual Studio</li>
           <li>Visual Studio Code</li>
           <li>JetBrains Suite</li>
+          <li>Docker/Containerization</li>
+          <li>Git/GitHub</li>
+          <li>Linux</li>
         </ul>
       </li>
     </ol>
@@ -82,6 +80,10 @@
         <li class="">Sequential and Parallel Data Structures & Algorithms</li>
         <li class="">Computer Organization & Assembly Language</li>
         <li class="">Compilers & Languages</li>
+        <li class="">Data Communication & Computer Networks</li>
+        <li class="">Operating Systems</li>
+        <li class="">DevOps</li>
+        <li class="">Modern Cybersecurity</li>
       </ul>
     </div>
   </Section>
@@ -106,6 +108,7 @@
               - Maintained the ASWWU 'Mask', which is a custom built student
               directory, made using the Angular framework.
             </p>
+            <p></p>
           </li>
         </ul>
       </li>
