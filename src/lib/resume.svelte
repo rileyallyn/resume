@@ -7,7 +7,7 @@
     <h1 class="p-1 mx-auto text-4xl font-bold text-center title font-sans">
       Riley Smith
     </h1>
-    <div class="border-b-2 border-black dark:border-gray-500" />
+    <div class="border-b-2 border-black dark:border-gray-500"></div>
     <ol
       class="flex flex-col mx-auto space-x-1 text-center sm:flex-row"
       id="pipe-list"
@@ -68,8 +68,7 @@
       <li>Expected Graduation: June 2026</li>
     </ol>
     <p class="mt-1 italic font-normal text-left text-md sm:mt-0">
-      <span class="font-bold">Bachelor of Science, Computer Science</span> | GPA:
-      3.4
+      <span class="font-bold">Bachelor of Science, Computer Science</span>
     </p>
     <div class="mt-1 text-left">
       <p class="italic font-bold">Relevant Courses:</p>
@@ -102,14 +101,39 @@
         <ul class="p-1">
           <li>
             <p>
-              - Maintained the ASWWU WordPress website, ensuring it was
-              accessible and responsive.
+              - Maintain the ASWWU WordPress website, ensuring it was accessible
+              and responsive.
             </p>
             <p>
-              - Maintained the ASWWU 'Mask', which is a custom built student
-              directory, made using the Angular framework.
+              - Maintain the ASWWU 'Mask', which is a custom built student
+              directory, made using the Angular framework. Oversaw the upgrade
+              from Angular v7 to v19
             </p>
-            <p></p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <ol
+          class="inline-flex flex-row flex-wrap space-x-1 font-bold"
+          id="pipe-list-bp"
+        >
+          <li>Director of Audio/Visual</li>
+          <li>Walla Walla University</li>
+          <li>September 2022 - Current</li>
+        </ol>
+        <ul class="p-1">
+          <li>
+            <p>
+              - Successfully assisted in planning and producing a concert-level
+              event, utilizing strong communication skills, and an attention to
+              detail to ensure a seamless and unforgettable experience for
+              attendees
+            </p>
+            <p>
+              - Train and schedule a team of ~15 team members to work sound
+              events on campus. This includes weekly assemblies, and
+              miscellaneous high production events.
+            </p>
           </li>
         </ul>
       </li>
@@ -141,37 +165,9 @@
           class="inline-flex flex-row flex-wrap space-x-1 font-bold"
           id="pipe-list-bp"
         >
-          <li>Senior Live Sound Engineer</li>
-          <li>Walla Walla University</li>
-          <li>September 2022 - Current</li>
-        </ol>
-        <ul class="p-1">
-          <li>
-            <p>
-              - Successfully assisted in planning and producing a concert-level
-              event, utilizing strong communication skills, and an attention to
-              detail to ensure a seamless and unforgettable experience for
-              attendees
-            </p>
-            <p>
-              - Ran Live Sound for various events across the different campus
-              venues
-            </p>
-            <p>
-              - Trained employees in projection, audio, and lighting across
-              different venues
-            </p>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <ol
-          class="inline-flex flex-row flex-wrap space-x-1 font-bold"
-          id="pipe-list-bp"
-        >
           <li>Video Producer, A/V Support</li>
           <li>Pine Springs Ranch</li>
-          <li>Summers 2024-2024</li>
+          <li>Summers 2022-2024</li>
           <li>Mountain Center, CA</li>
         </ol>
         <ul class="p-1">
@@ -188,9 +184,9 @@
           </li>
         </ul>
       </li>
-      <!-- <li>
+      <li>
         <ol
-          class="inline-flex flex-row flex-wrap space-x-1 font-bold" 
+          class="inline-flex flex-row flex-wrap space-x-1 font-bold"
           id="pipe-list-bp"
         >
           <li>System Administrator, Webmaster, A/V Support</li>
@@ -201,13 +197,17 @@
         <ul class="p-1">
           <li>
             <p>
-              - Helped to maintain the on premise servers (Active Directory)
+              - Assisted in maintaining the on premise servers Windows 2016
+              Active Directory, and Windows 10 workstations.
             </p>
-            <p>- Decreased loading times for the landing page by 20%</p>
             <p>- Oversaw the upgrade from Windows 7 to Windows 10</p>
+            <p>
+              - Decreased loading times for the WordPress website by 20% by
+              caching static assets
+            </p>
           </li>
         </ul>
-      </li> -->
+      </li>
     </ol>
   </Section>
 </main>
