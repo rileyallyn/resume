@@ -37,12 +37,12 @@
           class="flex flex-col pl-1 ml-5 text-left list-disc sm:list-none sm:space-x-1 sm:flex-row sm:ml-0"
         >
           <li>Full Stack Development</li>
+          <li>Object-Oriented Programming</li>
           <li>HTML/CSS</li>
-          <li>React.JS/Next.JS</li>
           <li>TypeScript</li>
-          <li>Svelte</li>
           <li>Golang</li>
           <li>Python</li>
+          <li>Java</li>
         </ul>
       </li>
       <li class="flex flex-col">
