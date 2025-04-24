@@ -2,7 +2,7 @@
   import Section from "./section.svelte";
 </script>
 
-<main class="container flex flex-col h-full max-w-3xl mx-auto">
+<main class="container flex flex-col h-full max-w-4xl mx-auto">
   <section id="heading" class="flex flex-col justify-center">
     <h1 class="p-1 mx-auto text-4xl font-bold text-center title font-sans">
       Riley Smith
@@ -36,14 +36,13 @@
           id="comma-list"
           class="flex flex-col pl-1 ml-5 text-left list-disc sm:list-none sm:space-x-1 sm:flex-row sm:ml-0"
         >
-          <li>JavaScript/TypeScript</li>
+          <li>Full Stack Development</li>
           <li>HTML/CSS</li>
           <li>React.JS/Next.JS</li>
+          <li>TypeScript</li>
           <li>Svelte</li>
           <li>Golang</li>
           <li>Python</li>
-          <li>Full Stack Development</li>
-          <li>DevOps</li>
         </ul>
       </li>
       <li class="flex flex-col">
