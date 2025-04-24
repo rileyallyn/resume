@@ -42,6 +42,8 @@
           <li>Svelte</li>
           <li>Golang</li>
           <li>Python</li>
+          <li>Full Stack Development</li>
+          <li>DevOps</li>
         </ul>
       </li>
       <li class="flex flex-col">
