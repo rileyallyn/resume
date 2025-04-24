@@ -103,8 +103,8 @@
         <ul class="p-1">
           <li>
             <p>
-              - Maintain the ASWWU WordPress website, ensuring it was accessible
-              and responsive.
+              - Maintain the ASWWU WordPress website to ensure accessibility and
+              responsiveness by regular updates and optimization of plugins.
             </p>
             <p>
               - Maintain the ASWWU 'Mask', which is a custom built student
