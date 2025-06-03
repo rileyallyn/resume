@@ -38,11 +38,11 @@
         >
           <li>Full Stack Development</li>
           <li>Object-Oriented Programming</li>
+          <li>React/Next.JS</li>
           <li>HTML/CSS</li>
           <li>TypeScript</li>
-          <li>Golang</li>
           <li>Python</li>
-          <li>Java</li>
+          <li>SQL/NoSQL</li>
         </ul>
       </li>
       <li class="flex flex-col">
@@ -150,8 +150,8 @@
         <ul class="p-1">
           <li>
             <p>
-              - Delivered an interactive web application using Next.JS & Sanity
-              CMS for a client
+              - Delivered an interactive web application using Next.JS/React &
+              Sanity CMS for a client
             </p>
             <p>
               - Built an application using the Discord API in GoLang, serving
