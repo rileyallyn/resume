@@ -12,7 +12,8 @@
       class="flex flex-col mx-auto space-x-1 text-center sm:flex-row"
       id="pipe-list"
     >
-      <li>Yucaipa, CA/College Place, WA</li>
+      <li>Yucaipa, CA</li>
+      <li>College Place, WA</li>
       <li>
         <a href="https://allyn.dev">https://allyn.dev</a>
       </li>
@@ -25,8 +26,8 @@
   </section>
 
   <p class="text-center mt-2">
-    Motivation is to create software that is accessible for everyone. Striving
-    to build applications that are not only user-friendly, but scalable.
+    Motivation is to create software that is accessible for everyone. <br />
+    Striving to build applications that are not only user-friendly, but scalable.
   </p>
   <Section id="skills" title="Skills">
     <ol class="flex flex-col gap-1 mt-2">
@@ -95,20 +96,26 @@
           class="inline-flex flex-row flex-wrap space-x-1 font-bold"
           id="pipe-list-bp"
         >
-          <li>Webhead</li>
-          <li>ASWWU</li>
-          <li>May 2024 - Current</li>
+          <li>Information Systems Intern</li>
+          <li>Loma Linda University</li>
+          <li>June 2025 - September 2025</li>
         </ol>
         <ul class="p-1">
           <li>
             <p>
-              - Maintain the ASWWU WordPress website to ensure accessibility and
-              responsiveness by regular updates and optimization of plugins.
+              - Contributed to the development of a full-stack continuing
+              education platform, utilizing Laravel and Vue.js for
+              administrative and user-facing modules. Standardized API
+              consumption with Axios and engineered 10+ accessible UI
+              components, enhancing user experience and backend integration.
             </p>
             <p>
-              - Maintain the ASWWU 'Mask', which is a custom built student
-              directory, made using the Angular framework. Oversaw the upgrade
-              from Angular v7 to v19
+              - Wrote custom scripts in PHP and Python to handle large-scale
+              data migration and traceability.
+            </p>
+            <p>
+              - Communicated across the organization to ensure platform features
+              were meeting the needs of various stakeholders.
             </p>
           </li>
         </ul>
@@ -118,22 +125,49 @@
           class="inline-flex flex-row flex-wrap space-x-1 font-bold"
           id="pipe-list-bp"
         >
-          <li>Director of Audio/Visual</li>
+          <li>ASWWU Webhead</li>
+          <li>Walla Walla University</li>
+          <li>May 2024 - Current</li>
+        </ol>
+        <ul class="p-1">
+          <li>
+            <p>
+              - Maintain the student association WordPress homepage to ensure
+              accessibility and responsiveness by regular updates and
+              optimization of plugins.
+            </p>
+            <p>
+              - Maintained the university-wide student and faculty directory,
+              "The Mask," built with Angular. Led the upgrade of the application
+              from Angular v7 to v19.
+            </p>
+            <p>
+              - Separated the business and data logic of the Python backend to
+              modules in order to improve maintainability and testability.
+            </p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <ol
+          class="inline-flex flex-row flex-wrap space-x-1 font-bold"
+          id="pipe-list-bp"
+        >
+          <li>Director of Live Production</li>
           <li>Walla Walla University</li>
           <li>September 2022 - Current</li>
         </ol>
         <ul class="p-1">
           <li>
             <p>
-              - Successfully assisted in planning and producing a concert-level
-              event, utilizing strong communication skills, and an attention to
-              detail to ensure a seamless and unforgettable experience for
-              attendees
+              - Successfully planned and produced a concert-level event,
+              utilizing strong communication skills, and an attention to detail
+              to ensure a seamless and unforgettable experience for attendees.
             </p>
             <p>
-              - Train and schedule a team of ~15 team members to work sound
-              events on campus. This includes weekly assemblies, and
-              miscellaneous high production events.
+              - Train and schedule a team of ~25 team members to work live
+              sound/lighting events on campus. This includes weekly assemblies,
+              and miscellaneous higher-production events.
             </p>
           </li>
         </ul>
@@ -161,7 +195,7 @@
           </li>
         </ul>
       </li>
-      <li>
+      <!-- <li>
         <ol
           class="inline-flex flex-row flex-wrap space-x-1 font-bold"
           id="pipe-list-bp"
@@ -173,7 +207,7 @@
         </ol>
         <ul class="p-1">
           <li>
-            <!-- <p>- Produced weekly 'recap' videos for the summer camp</p> -->
+            <p>- Produced weekly 'recap' videos for the summer camp</p>
             <p>
               - Created content for the Summer Camps social media which had a
               cumulative engagement of over 10k views
@@ -184,8 +218,8 @@
             </p>
           </li>
         </ul>
-      </li>
-      <li>
+      </li> -->
+      <!-- <li>
         <ol
           class="inline-flex flex-row flex-wrap space-x-1 font-bold"
           id="pipe-list-bp"
@@ -208,7 +242,7 @@
             </p>
           </li>
         </ul>
-      </li>
+      </li> -->
     </ol>
   </Section>
 </main>
