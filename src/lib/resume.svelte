@@ -18,9 +18,7 @@
         <a href="https://allyn.dev">https://allyn.dev</a>
       </li>
       <li>
-        <a href="mailto:riley.smith@wallawalla.edu"
-          >riley.smith@wallawalla.edu
-        </a>
+        <a href="mailto:riley@rileysmith.me">riley@rileysmith.me </a>
       </li>
     </ol>
   </section>
