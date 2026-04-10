@@ -1,4 +1,15 @@
 <script lang="ts">
+  import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle
+  } from "$lib/components/ui/alert-dialog/index.js";
+
   const { initialResumes } = $props<{ initialResumes: any[] }>();
   let resumes = $state(initialResumes);
   let selectedResume = $state<any>(null);
@@ -6,12 +17,42 @@
   let jobDescription = $state("");
   let selectedProvider = $state("openai");
 
-  async function handleBranch(resume: any) {
-    const name = prompt("Enter a name for the new branch (e.g., 'Google SE')");
-    if (!name) return;
-    const slug = prompt("Enter a slug for the new branch (e.g., 'google-se')");
-    if (!slug) return;
+  let alertOpen = $state(false);
+  let alertMessage = $state("");
 
+  let tailorConfirmOpen = $state(false);
+  let tailorSuggestionText = $state("");
+  let tailorPending = $state<{ item: any; bulletIndex: number } | null>(null);
+
+  let branchOpen = $state(false);
+  let branchName = $state("");
+  let branchSlug = $state("");
+  let branchTarget = $state<any>(null);
+
+  function showAlert(message: string) {
+    alertMessage = message;
+    alertOpen = true;
+  }
+
+  function openBranchDialog(resume: any) {
+    branchTarget = resume;
+    branchName = "";
+    branchSlug = "";
+    branchOpen = true;
+  }
+
+  async function submitBranchFromDialog() {
+    const resume = branchTarget;
+    if (!resume) return;
+    const name = branchName.trim();
+    const slug = branchSlug.trim();
+    if (!name || !slug) {
+      showAlert("Enter both a name and a slug for the new branch.");
+      return;
+    }
+
+    branchOpen = false;
+    branchTarget = null;
     isLoading = true;
     const formData = new FormData();
     formData.append("name", name);
@@ -26,11 +67,30 @@
         const newResume = await res.json();
         resumes = [newResume, ...resumes];
       } else {
-        alert(await res.text());
+        showAlert(await res.text());
       }
     } finally {
       isLoading = false;
     }
+  }
+
+  function cancelBranchDialog() {
+    branchOpen = false;
+    branchTarget = null;
+  }
+
+  function applyTailorSuggestion() {
+    const pending = tailorPending;
+    if (!pending) return;
+    pending.item.content[pending.bulletIndex] = tailorSuggestionText;
+    tailorPending = null;
+    tailorConfirmOpen = false;
+    void saveItem(pending.item);
+  }
+
+  function cancelTailorConfirm() {
+    tailorConfirmOpen = false;
+    tailorPending = null;
   }
 
   async function selectResume(resume: any) {
@@ -47,7 +107,7 @@
 
   async function tailorItem(item: any, bulletIndex: number) {
     if (!jobDescription) {
-      alert("Please provide a job description first.");
+      showAlert("Please paste a target job description first.");
       return;
     }
 
@@ -64,12 +124,11 @@
 
       if (res.ok) {
         const { text } = await res.json();
-        if (confirm(`AI Suggestion:\n\n"${text}"\n\nApply this change?`)) {
-          item.content[bulletIndex] = text;
-          await saveItem(item);
-        }
+        tailorSuggestionText = text;
+        tailorPending = { item, bulletIndex };
+        tailorConfirmOpen = true;
       } else {
-        alert(await res.text());
+        showAlert(await res.text());
       }
     } finally {
       isLoading = false;
@@ -85,7 +144,7 @@
         body: JSON.stringify({ title, subtitle, date_range, content })
       });
       if (!res.ok) {
-        alert("Failed to save item: " + await res.text());
+        showAlert("Failed to save item: " + (await res.text()));
       }
     } finally {
       isLoading = false;
@@ -143,7 +202,7 @@
               </button>
               <button
                 type="button"
-                onclick={() => handleBranch(resume)}
+                onclick={() => openBranchDialog(resume)}
                 class="flex shrink-0 items-center justify-center rounded-r border-l border-zinc-200/80 px-2 text-zinc-500 transition hover:bg-white/80 hover:text-violet-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-violet-500/40 disabled:opacity-50 dark:border-zinc-700 dark:hover:bg-zinc-800/80 dark:hover:text-violet-400"
                 disabled={isLoading}
                 title="Branch from this resume"
@@ -369,4 +428,74 @@
     {/if}
     </div>
   </div>
+
+  <!-- Simple message -->
+  <AlertDialog bind:open={alertOpen}>
+    <AlertDialogContent>
+      <AlertDialogHeader>
+        <AlertDialogTitle>Notice</AlertDialogTitle>
+        <AlertDialogDescription>{alertMessage}</AlertDialogDescription>
+      </AlertDialogHeader>
+      <AlertDialogFooter>
+        <AlertDialogAction class="w-full sm:w-auto" onclick={() => (alertOpen = false)}>OK</AlertDialogAction>
+      </AlertDialogFooter>
+    </AlertDialogContent>
+  </AlertDialog>
+
+  <!-- Apply AI suggestion -->
+  <AlertDialog bind:open={tailorConfirmOpen}>
+    <AlertDialogContent class="max-w-md sm:max-w-lg">
+      <AlertDialogHeader>
+        <AlertDialogTitle>Apply AI suggestion?</AlertDialogTitle>
+        <AlertDialogDescription class="text-left">
+          This will replace the bullet with the text below and save the item.
+        </AlertDialogDescription>
+      </AlertDialogHeader>
+      <blockquote
+        class="max-h-48 overflow-y-auto rounded-lg border border-zinc-200 bg-zinc-50 px-3 py-2 text-sm text-zinc-800 dark:border-zinc-700 dark:bg-zinc-900/80 dark:text-zinc-200"
+      >
+        {tailorSuggestionText}
+      </blockquote>
+      <AlertDialogFooter>
+        <AlertDialogCancel onclick={cancelTailorConfirm}>Cancel</AlertDialogCancel>
+        <AlertDialogAction onclick={applyTailorSuggestion}>Apply and save</AlertDialogAction>
+      </AlertDialogFooter>
+    </AlertDialogContent>
+  </AlertDialog>
+
+  <!-- New branch -->
+  <AlertDialog bind:open={branchOpen}>
+    <AlertDialogContent>
+      <AlertDialogHeader>
+        <AlertDialogTitle>New branch</AlertDialogTitle>
+        <AlertDialogDescription>
+          Create a copy of <span class="font-medium text-foreground">{branchTarget?.name ?? "this resume"}</span> with a new name and URL slug.
+        </AlertDialogDescription>
+      </AlertDialogHeader>
+      <div class="grid gap-3 py-1">
+        <div class="grid gap-1.5">
+          <label class="text-left text-xs font-medium text-zinc-600 dark:text-zinc-400" for="branch-dialog-name">Name</label>
+          <input
+            id="branch-dialog-name"
+            bind:value={branchName}
+            placeholder="e.g. Google SE"
+            class="w-full rounded-md border border-zinc-200 bg-white px-2.5 py-2 text-sm text-zinc-900 shadow-sm focus:border-violet-400 focus:outline-none focus:ring-2 focus:ring-violet-500/25 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
+          />
+        </div>
+        <div class="grid gap-1.5">
+          <label class="text-left text-xs font-medium text-zinc-600 dark:text-zinc-400" for="branch-dialog-slug">Slug</label>
+          <input
+            id="branch-dialog-slug"
+            bind:value={branchSlug}
+            placeholder="e.g. google-se"
+            class="w-full rounded-md border border-zinc-200 bg-white px-2.5 py-2 font-mono text-sm text-zinc-900 shadow-sm focus:border-violet-400 focus:outline-none focus:ring-2 focus:ring-violet-500/25 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
+          />
+        </div>
+      </div>
+      <AlertDialogFooter>
+        <AlertDialogCancel onclick={cancelBranchDialog}>Cancel</AlertDialogCancel>
+        <AlertDialogAction onclick={submitBranchFromDialog}>Create branch</AlertDialogAction>
+      </AlertDialogFooter>
+    </AlertDialogContent>
+  </AlertDialog>
 </div>

@@ -5,17 +5,18 @@ import EditorInterface from "../lib/editor-interface.svelte";
 
 const supabase = createSupabaseServerClient({ request: Astro.request, cookies: Astro.cookies });
 
-const { data: { session } } = await supabase.auth.getSession();
+const { data: { user } } = await supabase.auth.getUser();
 
-// if (!session || session.user.email !== "riley@rileysmith.me") {
-//   return Astro.redirect("/login");
-// }
+if (!user) {
+  return Astro.redirect("/login");
+}
 
 const { data: resumes } = await supabase
   .from("resumes")
   .select("*")
   .order("is_base", { ascending: false })
   .order("name", { ascending: true });
+
 ---
 
 <html lang="en" class="h-full">
@@ -75,12 +76,12 @@ const { data: resumes } = await supabase
             role="menu"
             aria-orientation="vertical"
           >
-            {session?.user ? (
+            {user ? (
               <>
                 <div class="px-3 pt-2 pb-1">
                   <p class="text-[10px] font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Signed in</p>
-                  <p class="mt-0.5 truncate text-sm font-medium text-zinc-900 dark:text-zinc-100" title={session.user.email ?? undefined}>
-                    {session.user.email ?? session.user.id}
+                  <p class="mt-0.5 truncate text-sm font-medium text-zinc-900 dark:text-zinc-100" title={user.email ?? undefined}>
+                    {user.email ?? user.id}
                   </p>
                 </div>
                 <div class="my-1 h-px bg-zinc-100 dark:bg-zinc-800" role="separator" />
