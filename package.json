@@ -6,7 +6,7 @@
     "url": "https://resume.rileyy.dev"
   },
   "type": "module",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -15,11 +15,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/svelte": "^7.1.0",
-    "@tailwindcss/vite": "^4.1.12",
-    "astro": "^5.13.3",
-    "svelte": "^5.38.3",
-    "tailwindcss": "^4.1.12"
+    "@astrojs/svelte": "^8.0.4",
+    "@tailwindcss/vite": "^4.2.2",
+    "astro": "^6.1.5",
+    "svelte": "^5.55.3",
+    "tailwindcss": "^4.2.2"
   },
   "packageManager": "pnpm@10.15.0+sha512.486ebc259d3e999a4e8691ce03b5cac4a71cbeca39372a9b762cb500cfdf0873e2cb16abe3d951b1ee2cf012503f027b98b6584e4df22524e0c7450d9ec7aa7b"
 }
