@@ -1,0 +1,123 @@
+---
+import "../styles/global.css";
+import { createSupabaseServerClient } from "../lib/supabase-server";
+import EditorInterface from "../lib/editor-interface.svelte";
+
+const supabase = createSupabaseServerClient({ request: Astro.request, cookies: Astro.cookies });
+
+const { data: { session } } = await supabase.auth.getSession();
+
+// if (!session || session.user.email !== "riley@rileysmith.me") {
+//   return Astro.redirect("/login");
+// }
+
+const { data: resumes } = await supabase
+  .from("resumes")
+  .select("*")
+  .order("is_base", { ascending: false })
+  .order("name", { ascending: true });
+---
+
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Resume Editor</title>
+  </head>
+  <body
+    class="flex min-h-dvh min-h-screen flex-col antialiased text-zinc-900 dark:text-zinc-100 bg-zinc-100 dark:bg-zinc-950 selection:bg-violet-500/25 selection:text-zinc-900 dark:selection:text-white"
+  >
+    <div
+      class="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
+      aria-hidden="true"
+    >
+      <div
+        class="absolute -top-40 left-1/2 h-112 w-4xl -translate-x-1/2 rounded-full bg-linear-to-b from-violet-200/60 via-fuchsia-100/40 to-transparent blur-3xl dark:from-violet-950/50 dark:via-fuchsia-950/30 dark:to-transparent"
+      ></div>
+      <div
+        class="absolute bottom-0 right-0 h-80 w-80 translate-x-1/4 translate-y-1/4 rounded-full bg-linear-to-tl from-indigo-200/50 to-transparent blur-3xl dark:from-indigo-950/40"
+      ></div>
+    </div>
+
+    <header
+      class="sticky top-0 z-50 border-b border-zinc-200/80 bg-white/75 backdrop-blur-xl backdrop-saturate-150 dark:border-zinc-800/80 dark:bg-zinc-950/75"
+    >
+      <div class="flex h-14 w-full min-w-0 items-center justify-between gap-4 px-4 sm:px-5">
+        <div class="flex min-w-0 items-center gap-3">
+          <span
+            class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-violet-600 to-indigo-600 text-sm font-semibold text-white shadow-lg shadow-violet-500/25"
+            aria-hidden="true"
+          >
+            R
+          </span>
+          <div class="min-w-0">
+            <p class="truncate text-sm font-semibold tracking-tight">Resume Editor</p>
+            <p class="truncate text-xs text-zinc-500 dark:text-zinc-400">Draft, tailor, publish</p>
+          </div>
+        </div>
+        <details class="group relative">
+          <summary
+            class="flex h-9 w-9 cursor-pointer list-none items-center justify-center rounded-xl border border-zinc-200/90 bg-white/80 text-zinc-600 shadow-sm transition hover:border-zinc-300 hover:bg-zinc-50 hover:text-zinc-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-50 group-open:border-violet-400/70 group-open:bg-violet-50/80 group-open:text-violet-800 group-open:shadow-md dark:border-zinc-700 dark:bg-zinc-900/80 dark:text-zinc-300 dark:hover:border-zinc-600 dark:hover:bg-zinc-800 dark:hover:text-zinc-100 dark:group-open:border-violet-500/50 dark:group-open:bg-violet-950/50 dark:group-open:text-violet-200 dark:focus-visible:ring-offset-zinc-950 [&::-webkit-details-marker]:hidden"
+            aria-label="Account menu"
+            aria-haspopup="menu"
+          >
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+              />
+            </svg>
+          </summary>
+          <div
+            class="absolute right-0 top-full z-50 mt-2 w-60 origin-top-right rounded-xl border border-zinc-200/90 bg-white/95 py-1 shadow-lg shadow-zinc-950/10 ring-1 ring-zinc-950/5 backdrop-blur-xl dark:border-zinc-700 dark:bg-zinc-900/95 dark:ring-white/10"
+            role="menu"
+            aria-orientation="vertical"
+          >
+            {session?.user ? (
+              <>
+                <div class="px-3 pt-2 pb-1">
+                  <p class="text-[10px] font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Signed in</p>
+                  <p class="mt-0.5 truncate text-sm font-medium text-zinc-900 dark:text-zinc-100" title={session.user.email ?? undefined}>
+                    {session.user.email ?? session.user.id}
+                  </p>
+                </div>
+                <div class="my-1 h-px bg-zinc-100 dark:bg-zinc-800" role="separator" />
+                <form action="/api/auth/signout" method="POST">
+                  <button
+                    type="submit"
+                    class="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-zinc-700 transition hover:bg-zinc-50 dark:text-zinc-200 dark:hover:bg-zinc-800"
+                    role="menuitem"
+                  >
+                    <svg class="h-4 w-4 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M18 9l3 3m0 0-3 3m3-3H9" />
+                    </svg>
+                    Log out
+                  </button>
+                </form>
+              </>
+            ) : (
+              <a
+                href="/login"
+                class="flex items-center gap-2 px-3 py-2 text-sm text-zinc-700 transition hover:bg-zinc-50 dark:text-zinc-200 dark:hover:bg-zinc-800"
+                role="menuitem"
+              >
+                <svg class="h-4 w-4 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
+                </svg>
+                Log in
+              </a>
+            )}
+          </div>
+        </details>
+      </div>
+    </header>
+
+    <main class="flex min-h-0 flex-1 flex-col">
+      <div class="flex min-h-0 min-w-0 flex-1 flex-col">
+        <EditorInterface initialResumes={resumes ?? []} client:load />
+      </div>
+    </main>
+  </body>
+</html>

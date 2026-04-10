@@ -5,6 +5,13 @@
     },
     "svelte": {
       "url": "https://mcp.svelte.dev/mcp"
+    },
+    "supabase": {
+      "url": "https://mcp.supabase.com/mcp?project_ref=gbseizgziwqwnhonxbdp",
+      "type": "http"
+    },
+    "cloudflare-api": {
+      "url": "https://mcp.cloudflare.com/mcp"
     }
   },
   "$schema": "https://raw.githubusercontent.com/google-gemini/gemini-cli/main/schemas/settings.schema.json"

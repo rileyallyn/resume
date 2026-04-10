@@ -1,246 +1,127 @@
 <script lang="ts">
   import Section from "./section.svelte";
+  
+  const { resume } = $props<{ resume: any }>();
 </script>
 
 <main class="container flex flex-col h-full max-w-4xl mx-auto">
   <section id="heading" class="flex flex-col justify-center">
     <h1 class="p-1 mx-auto text-4xl font-bold text-center title font-sans">
-      Riley Smith
+      {resume.full_name}
     </h1>
     <div class="border-b-2 border-black dark:border-gray-500"></div>
     <ol
       class="flex flex-col mx-auto space-x-1 text-center sm:flex-row"
       id="pipe-list"
     >
-      <li>Yucaipa, CA</li>
-      <li>College Place, WA</li>
-      <li>
-        <a href="https://allyn.dev">https://allyn.dev</a>
-      </li>
-      <li>
-        <a href="mailto:riley@rileysmith.me">riley@rileysmith.me </a>
-      </li>
+      {#if resume.location}
+        <li>{resume.location}</li>
+      {/if}
+      {#if resume.website_url}
+        <li>
+          <a href={resume.website_url}>{resume.website_url}</a>
+        </li>
+      {/if}
+      {#if resume.email}
+        <li>
+          <a href={`mailto:${resume.email}`}>{resume.email}</a>
+        </li>
+      {/if}
     </ol>
   </section>
 
-  <p class="text-center mt-2">
-    Motivation is to create software that is accessible for everyone. <br />
-    Striving to build applications that are not only user-friendly, but scalable.
-  </p>
-  <Section id="skills" title="Skills">
-    <ol class="flex flex-col gap-1 mt-2">
-      <li class="flex flex-col">
-        <h3 class="font-bold text-left text-md">Technologies:</h3>
-        <ul
-          id="comma-list"
-          class="flex flex-col pl-1 ml-5 text-left list-disc sm:list-none sm:space-x-1 sm:flex-row sm:ml-0"
-        >
-          <li>Full Stack Development</li>
-          <li>Object-Oriented Programming</li>
-          <li>React/Next.JS</li>
-          <li>HTML/CSS</li>
-          <li>TypeScript</li>
-          <li>Python</li>
-          <li>SQL/NoSQL</li>
-        </ul>
-      </li>
-      <li class="flex flex-col">
-        <h3 class="font-bold text-left text-md">Software:</h3>
-        <ul
-          id="comma-list"
-          class="flex flex-col pl-1 ml-5 text-left list-disc sm:list-none sm:space-x-1 sm:flex-row sm:ml-0"
-        >
-          <li>Visual Studio</li>
-          <li>Visual Studio Code</li>
-          <li>JetBrains Suite</li>
-          <li>Docker/Containerization</li>
-          <li>Node.JS</li>
-          <li>Git/GitHub</li>
-          <li>Linux</li>
-        </ul>
-      </li>
-    </ol>
-  </Section>
-  <Section id="education" title="Education">
-    <ol class="flex flex-col font-bold sm:flex-row sm:space-x-1" id="pipe-list">
-      <li>Walla Walla University</li>
-      <li>College Place, WA</li>
-      <li>Expected Graduation: June 2026</li>
-    </ol>
-    <p class="mt-1 italic font-normal text-left text-md sm:mt-0">
-      <span class="font-bold">Bachelor of Science, Computer Science</span>
+  {#if resume.summary}
+    <p class="text-center mt-2">
+      {resume.summary}
     </p>
-    <div class="mt-1 text-left">
-      <p class="italic font-bold">Relevant Courses:</p>
-      <ul
-        id="comma-list"
-        class="flex flex-col pl-1 ml-5 text-left list-disc sm:list-none sm:space-x-1 sm:flex-row sm:ml-0 sm:text-nowrap sm:flex-wrap"
-      >
-        <li class="">Fundamentals of Programming I & II</li>
-        <li class="">Sequential and Parallel Data Structures & Algorithms</li>
-        <li class="">Computer Organization & Assembly Language</li>
-        <li class="">Compilers & Languages</li>
-        <li class="">Data Communication & Computer Networks</li>
-        <li class="">Operating Systems</li>
-        <li class="">DevOps</li>
-        <li class="">Modern Cybersecurity</li>
-      </ul>
-    </div>
-  </Section>
-  <Section id="experience" title="Experience">
-    <ol class="flex flex-col mt-1 text-left spacing-y-1">
-      <li>
-        <ol
-          class="inline-flex flex-row flex-wrap space-x-1 font-bold"
-          id="pipe-list-bp"
-        >
-          <li>Information Systems Intern</li>
-          <li>Loma Linda University</li>
-          <li>June 2025 - September 2025</li>
+  {/if}
+
+  {#each resume.sections as section (section.id)}
+    <Section id={section.title.toLowerCase()} title={section.title}>
+      {#if section.title === 'Skills'}
+        <ol class="flex flex-col gap-1 mt-2">
+          {#each section.items as item (item.id)}
+            <li class="flex flex-col">
+              <h3 class="font-bold text-left text-md">{item.title}:</h3>
+              <ul
+                id="comma-list"
+                class="flex flex-col pl-1 ml-5 text-left list-disc sm:list-none sm:space-x-1 sm:flex-row sm:ml-0"
+              >
+                {#each item.content as skill (skill)}
+                  <li>{skill}</li>
+                {/each}
+              </ul>
+            </li>
+          {/each}
         </ol>
-        <ul class="p-1">
-          <li>
-            <p>
-              - Contributed to the development of a full-stack continuing
-              education platform, utilizing Laravel and Vue.js for
-              administrative and user-facing modules. Standardized API
-              consumption with Axios and engineered 10+ accessible UI
-              components, enhancing user experience and backend integration.
+      {:else if section.title === 'Education'}
+        {#each section.items as item (item.id)}
+          <ol class="flex flex-col font-bold sm:flex-row sm:space-x-1" id="pipe-list">
+            {#if item.subtitle}<li>{item.subtitle}</li>{/if}
+            {#if item.date_range}<li>{item.date_range}</li>{/if}
+          </ol>
+          {#if item.title}
+            <p class="mt-1 italic font-normal text-left text-md sm:mt-0">
+              <span class="font-bold">{item.title}</span>
             </p>
-            <p>
-              - Wrote custom scripts in PHP and Python to handle large-scale
-              data migration and traceability.
-            </p>
-            <p>
-              - Communicated across the organization to ensure platform features
-              were meeting the needs of various stakeholders.
-            </p>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <ol
-          class="inline-flex flex-row flex-wrap space-x-1 font-bold"
-          id="pipe-list-bp"
-        >
-          <li>ASWWU Webhead</li>
-          <li>Walla Walla University</li>
-          <li>May 2024 - Current</li>
+          {/if}
+          {#if item.content && item.content.length > 0}
+            <div class="mt-1 text-left">
+              <p class="italic font-bold">Relevant Courses:</p>
+              <ul
+                id="comma-list"
+                class="flex flex-col pl-1 ml-5 text-left list-disc sm:list-none sm:space-x-1 sm:flex-row sm:ml-0 sm:text-nowrap sm:flex-wrap"
+              >
+                {#each item.content as course (course)}
+                  <li class="">{course}</li>
+                {/each}
+              </ul>
+            </div>
+          {/if}
+        {/each}
+      {:else if section.title === 'Experience'}
+        <ol class="flex flex-col mt-1 text-left spacing-y-1">
+          {#each section.items as item (item.id)}
+            <li>
+              <ol
+                class="inline-flex flex-row flex-wrap space-x-1 font-bold"
+                id="pipe-list-bp"
+              >
+                {#if item.title}<li>{item.title}</li>{/if}
+                {#if item.subtitle}<li>{item.subtitle}</li>{/if}
+                {#if item.date_range}<li>{item.date_range}</li>{/if}
+              </ol>
+              <ul class="p-1">
+                {#each item.content as bullet (bullet)}
+                  <li>
+                    <p>- {bullet}</p>
+                  </li>
+                {/each}
+              </ul>
+            </li>
+          {/each}
         </ol>
-        <ul class="p-1">
-          <li>
-            <p>
-              - Maintain the student association WordPress homepage to ensure
-              accessibility and responsiveness by regular updates and
-              optimization of plugins.
-            </p>
-            <p>
-              - Maintained the university-wide student and faculty directory,
-              "The Mask," built with Angular. Led the upgrade of the application
-              from Angular v7 to v19.
-            </p>
-            <p>
-              - Separated the business and data logic of the Python backend to
-              modules in order to improve maintainability and testability.
-            </p>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <ol
-          class="inline-flex flex-row flex-wrap space-x-1 font-bold"
-          id="pipe-list-bp"
-        >
-          <li>Director of Live Production</li>
-          <li>Walla Walla University</li>
-          <li>September 2022 - Current</li>
+      {:else}
+        <!-- Generic fallback for any other sections -->
+        <ol class="flex flex-col mt-1 text-left">
+          {#each section.items as item (item.id)}
+            <li class="mb-2">
+              <div class="flex justify-between font-bold">
+                <span>{item.title || ''}</span>
+                <span>{item.date_range || ''}</span>
+              </div>
+              {#if item.subtitle}
+                <div class="italic">{item.subtitle}</div>
+              {/if}
+              <ul class="list-disc pl-5 mt-1">
+                {#each item.content as bullet (bullet)}
+                  <li>{bullet}</li>
+                {/each}
+              </ul>
+            </li>
+          {/each}
         </ol>
-        <ul class="p-1">
-          <li>
-            <p>
-              - Successfully planned and produced a concert-level event,
-              utilizing strong communication skills, and an attention to detail
-              to ensure a seamless and unforgettable experience for attendees.
-            </p>
-            <p>
-              - Train and schedule a team of ~25 team members to work live
-              sound/lighting events on campus. This includes weekly assemblies,
-              and miscellaneous higher-production events.
-            </p>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <ol
-          class="inline-flex flex-row flex-wrap space-x-1 font-bold"
-          id="pipe-list-bp"
-        >
-          <li>Founder, Lead Software Developer</li>
-          <li>Velvox Labs</li>
-          <li>October 2022 - April 2024</li>
-        </ol>
-        <ul class="p-1">
-          <li>
-            <p>
-              - Delivered an interactive web application using Next.JS/React &
-              Sanity CMS for a client
-            </p>
-            <p>
-              - Built an application using the Discord API in GoLang, serving
-              thousands of users per day. Providing content moderation and
-              analytics for communities.
-            </p>
-          </li>
-        </ul>
-      </li>
-      <!-- <li>
-        <ol
-          class="inline-flex flex-row flex-wrap space-x-1 font-bold"
-          id="pipe-list-bp"
-        >
-          <li>Video Producer, A/V Support</li>
-          <li>Pine Springs Ranch</li>
-          <li>Summers 2022-2024</li>
-          <li>Mountain Center, CA</li>
-        </ol>
-        <ul class="p-1">
-          <li>
-            <p>- Produced weekly 'recap' videos for the summer camp</p>
-            <p>
-              - Created content for the Summer Camps social media which had a
-              cumulative engagement of over 10k views
-            </p>
-            <p>
-              - Supported the nightly drama programs with audio and visual
-              features
-            </p>
-          </li>
-        </ul>
-      </li> -->
-      <!-- <li>
-        <ol
-          class="inline-flex flex-row flex-wrap space-x-1 font-bold"
-          id="pipe-list-bp"
-        >
-          <li>System Administrator, Webmaster, A/V Support</li>
-          <li>Mesa Grande Academy</li>
-          <li>2019-2022</li>
-          <li>Calimesa, CA</li>
-        </ol>
-        <ul class="p-1">
-          <li>
-            <p>
-              - Assisted in maintaining the on premise servers Windows 2016
-              Active Directory, and Windows 10 workstations.
-            </p>
-            <p>- Oversaw the upgrade from Windows 7 to Windows 10</p>
-            <p>
-              - Decreased loading times for the WordPress website by 20% by
-              caching static assets
-            </p>
-          </li>
-        </ul>
-      </li> -->
-    </ol>
-  </Section>
+      {/if}
+    </Section>
+  {/each}
 </main>

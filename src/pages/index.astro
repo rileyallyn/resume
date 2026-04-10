@@ -1,23 +1,54 @@
 ---
 import "../styles/global.css";
 import Resume from "../lib/resume.svelte";
+import { supabase } from "../lib/supabase";
+
+const { searchParams } = Astro.url;
+const branchSlug = searchParams.get("branch") || "main";
+
+const { data: resume, error: resumeError } = await supabase
+  .from("resumes")
+  .select(`
+    *,
+    sections:resume_sections(
+      *,
+      items:resume_items(*)
+    )
+  `)
+  .eq("slug", branchSlug)
+  .single();
+
+// Sort sections and items by display_order
+if (resume && resume.sections) {
+  resume.sections.sort((a, b) => a.display_order - b.display_order);
+  resume.sections.forEach(section => {
+    if (section.items) {
+      section.items.sort((a, b) => a.display_order - b.display_order);
+    }
+  });
+}
+
+if (resumeError || !resume) {
+  // Fallback if not found, or show error
+  return Astro.redirect("/404");
+}
 ---
 
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Riley Smith | Resume</title>
+    <title>{resume.full_name} | Resume</title>
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Riley Smith | Resume" />
+    <meta property="og:title" content={`${resume.full_name} | Resume`} />
     <meta
       property="og:description"
-      content="👋 hey, i'm Riley. This is my resume"
+      content={`👋 hey, i'm ${resume.full_name.split(' ')[0]}. This is my resume`}
     />
     <meta name="darkreader-lock" />
   </head>
-  <body class="p-1 bg-white dark:bg-slate-950 dark:text-white">
-    <Resume />
+  <body class="p-1">
+    <Resume resume={resume} />
   </body>
 </html>
