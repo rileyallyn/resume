@@ -26,6 +26,7 @@ CREATE TABLE resume_sections (
     resume_id UUID REFERENCES resumes(id) ON DELETE CASCADE,
     title TEXT NOT NULL, -- "Skills", "Education", "Experience"
     display_order INTEGER NOT NULL,
+    is_hidden BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
@@ -38,6 +39,7 @@ CREATE TABLE resume_items (
     date_range TEXT, -- "June 2025 - Sept 2025"
     content JSONB, -- Array of strings for bullet points or relevant courses
     display_order INTEGER NOT NULL,
+    is_hidden BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 

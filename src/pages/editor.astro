@@ -63,13 +63,14 @@ const { data: resumes } = await supabase
             aria-label="Account menu"
             aria-haspopup="menu"
           >
-            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+            <img src={user.user_metadata.avatar_url ?? ""} alt="User avatar" class="h-9 w-9 rounded-xl" />
+            <!-- <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
               />
-            </svg>
+            </svg> -->
           </summary>
           <div
             class="absolute right-0 top-full z-50 mt-2 w-60 origin-top-right rounded-xl border border-zinc-200/90 bg-white/95 py-1 shadow-lg shadow-zinc-950/10 ring-1 ring-zinc-950/5 backdrop-blur-xl dark:border-zinc-700 dark:bg-zinc-900/95 dark:ring-white/10"
@@ -80,8 +81,8 @@ const { data: resumes } = await supabase
               <>
                 <div class="px-3 pt-2 pb-1">
                   <p class="text-[10px] font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Signed in</p>
-                  <p class="mt-0.5 truncate text-sm font-medium text-zinc-900 dark:text-zinc-100" title={user.email ?? undefined}>
-                    {user.email ?? user.id}
+                  <p class="mt-0.5 truncate text-sm font-medium text-zinc-900 dark:text-zinc-100" title={user.user_metadata.full_name ?? undefined}>
+                    {user.user_metadata.full_name ?? user.email ?? user.id} ({user.email ?? user.id})
                   </p>
                 </div>
                 <div class="my-1 h-px bg-zinc-100 dark:bg-zinc-800" role="separator" />

@@ -63,6 +63,10 @@ body {
   min-height: 100vh;
 }
 
+html[data-resume-page] #resume-root {
+  padding-top: var(--resume-export-toolbar, 0);
+}
+
 @media (min-width: 640px) {
   #comma-list li::after {
     content: ", ";
@@ -234,5 +238,51 @@ body {
   }
 	html {
 		@apply font-mono;
+  }
+}
+
+/* Public resume page: print / Save as PDF */
+@media print {
+  @page {
+    size: letter;
+    margin: 0.45in;
+  }
+
+  html[data-resume-page] .no-print {
+    display: none !important;
+  }
+
+  html[data-resume-page] {
+    color-scheme: light;
+  }
+
+  html[data-resume-page] body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+  }
+
+  html[data-resume-page] .resume-print-root {
+    max-width: none !important;
+    padding-top: 0 !important;
+  }
+
+  html[data-resume-page] .title {
+    animation: none !important;
+  }
+
+  html[data-resume-page] #resume-root,
+  html[data-resume-page] #resume-root * {
+    color: #000 !important;
+    -webkit-print-color-adjust: economy;
+    print-color-adjust: economy;
+  }
+
+  html[data-resume-page] #resume-root a {
+    text-decoration: none;
+  }
+
+  html[data-resume-page] #resume-root [class*="border-"] {
+    border-color: #000 !important;
   }
 }

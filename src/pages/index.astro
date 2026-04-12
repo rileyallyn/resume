@@ -1,10 +1,15 @@
 ---
 import "../styles/global.css";
 import Resume from "../lib/resume.svelte";
-import { supabase } from "../lib/supabase";
+import ResumePdfExport from "../lib/resume-pdf-export.svelte";
+import { createSupabaseServerClient } from "../lib/supabase-server";
+
+const supabase = createSupabaseServerClient({ request: Astro.request, cookies: Astro.cookies });
 
 const { searchParams } = Astro.url;
 const branchSlug = searchParams.get("branch") || "main";
+
+const { data: { user } } = await supabase.auth.getUser();
 
 const { data: resume, error: resumeError } = await supabase
   .from("resumes")
@@ -34,7 +39,7 @@ if (resumeError || !resume) {
 }
 ---
 
-<html lang="en" class="dark">
+<html lang="en" class="dark" data-resume-page>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -49,6 +54,9 @@ if (resumeError || !resume) {
     <meta name="darkreader-lock" />
   </head>
   <body class="p-1">
-    <Resume resume={resume} />
+    <ResumePdfExport user={user} client:load />
+    <div id="resume-root" class="resume-print-root mx-auto">
+      <Resume resume={resume} />
+    </div>
   </body>
 </html>

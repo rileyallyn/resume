@@ -36,11 +36,11 @@
     </p>
   {/if}
 
-  {#each resume.sections as section (section.id)}
+  {#each resume.sections.filter(s => !s.is_hidden) as section (section.id)}
     <Section id={section.title.toLowerCase()} title={section.title}>
       {#if section.title === 'Skills'}
         <ol class="flex flex-col gap-1 mt-2">
-          {#each section.items as item (item.id)}
+          {#each section.items.filter(i => !i.is_hidden) as item (item.id)}
             <li class="flex flex-col">
               <h3 class="font-bold text-left text-md">{item.title}:</h3>
               <ul
@@ -55,7 +55,7 @@
           {/each}
         </ol>
       {:else if section.title === 'Education'}
-        {#each section.items as item (item.id)}
+        {#each section.items.filter(i => !i.is_hidden) as item (item.id)}
           <ol class="flex flex-col font-bold sm:flex-row sm:space-x-1" id="pipe-list">
             {#if item.subtitle}<li>{item.subtitle}</li>{/if}
             {#if item.date_range}<li>{item.date_range}</li>{/if}
@@ -81,7 +81,7 @@
         {/each}
       {:else if section.title === 'Experience'}
         <ol class="flex flex-col mt-1 text-left spacing-y-1">
-          {#each section.items as item (item.id)}
+          {#each section.items.filter(i => !i.is_hidden) as item (item.id)}
             <li>
               <ol
                 class="inline-flex flex-row flex-wrap space-x-1 font-bold"
@@ -104,7 +104,7 @@
       {:else}
         <!-- Generic fallback for any other sections -->
         <ol class="flex flex-col mt-1 text-left">
-          {#each section.items as item (item.id)}
+          {#each section.items.filter(i => !i.is_hidden) as item (item.id)}
             <li class="mb-2">
               <div class="flex justify-between font-bold">
                 <span>{item.title || ''}</span>
