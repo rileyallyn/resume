@@ -8,10 +8,10 @@
 
 {#snippet heading(title: string)}
   <h2
-    class="flex items-center gap-2 text-[0.65rem] font-bold tracking-[0.18em] text-indigo-600 uppercase dark:text-indigo-400"
+    class="flex items-center gap-2 text-[0.65rem] font-bold tracking-[0.18em] text-purple-700 uppercase dark:text-purple-400"
   >
     {title}
-    <span class="h-px flex-1 bg-indigo-200 dark:bg-indigo-900"></span>
+    <span class="h-px flex-1 bg-purple-200 dark:bg-purple-900"></span>
   </h2>
 {/snippet}
 
