@@ -124,8 +124,8 @@ html[data-resume-page] #resume-root {
     font-family: Georgia, "Times New Roman", Times, serif;
   }
   40% {
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    font-family:
+      "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
     font-weight: bold;
   }
   50% {
@@ -188,7 +188,7 @@ html[data-resume-page] #resume-root {
 }
 
 @theme inline {
-  --font-mono: 'JetBrains Mono Variable', monospace;
+  --font-mono: "JetBrains Mono Variable", monospace;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -230,14 +230,14 @@ html[data-resume-page] #resume-root {
 }
 
 @layer base {
-	* {
-		@apply border-border outline-ring/50;
+  * {
+    @apply border-border outline-ring/50;
   }
-	body {
-		@apply bg-background text-foreground;
+  body {
+    @apply bg-background text-foreground;
   }
-	html {
-		@apply font-mono;
+  html {
+    @apply font-mono;
   }
 }
 

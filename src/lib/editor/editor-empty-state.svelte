@@ -1,5 +1,5 @@
 <div
-  class="flex min-h-[min(24rem,calc(100dvh-14rem))] flex-col items-center justify-center gap-4 border-b border-dashed border-zinc-300/80 bg-zinc-50/80 px-6 py-12 text-center dark:border-zinc-800 dark:bg-zinc-950/50 md:min-h-[calc(100dvh-3.5rem)]"
+  class="flex min-h-[min(24rem,calc(100dvh-14rem))] flex-col items-center justify-center gap-4 border-b border-dashed border-zinc-300/80 bg-zinc-50/80 px-6 py-12 text-center md:min-h-[calc(100dvh-3.5rem)] dark:border-zinc-800 dark:bg-zinc-950/50"
   role="status"
 >
   <div

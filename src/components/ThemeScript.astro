@@ -1,0 +1,17 @@
+---
+// Applies the saved (or system) theme before first paint to avoid a flash of
+// the wrong theme. Must be rendered inside <head>, before the page content.
+---
+
+<script is:inline>
+  (function () {
+    try {
+      const stored = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const isDark = stored ? stored === "dark" : prefersDark;
+      document.documentElement.classList.toggle("dark", isDark);
+    } catch (_) {
+      /* localStorage unavailable — fall back to the default (light) theme */
+    }
+  })();
+</script>

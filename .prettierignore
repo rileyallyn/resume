@@ -3,3 +3,5 @@ dist
 .astro
 .wrangler
 pnpm-lock.yaml
+.agents
+.cursor

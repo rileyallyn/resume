@@ -1,0 +1,88 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<button
+  type="button"
+  data-theme-toggle
+  class:list={[
+    "flex h-9 w-9 cursor-pointer items-center justify-center rounded-xl border border-zinc-200/90 bg-white/80 text-zinc-600 shadow-sm transition hover:border-zinc-300 hover:bg-zinc-50 hover:text-zinc-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-50 dark:border-zinc-700 dark:bg-zinc-900/80 dark:text-zinc-300 dark:hover:border-zinc-600 dark:hover:bg-zinc-800 dark:hover:text-zinc-100 dark:focus-visible:ring-offset-zinc-950",
+    className
+  ]}
+  aria-label="Toggle dark mode"
+  title="Toggle dark mode"
+  aria-pressed="false"
+>
+  <!-- Shown in light mode: click to switch to dark -->
+  <svg
+    class="h-5 w-5 dark:hidden"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.75"
+    aria-hidden="true"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M21.752 15.002A9.718 9.718 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
+    ></path>
+  </svg>
+  <!-- Shown in dark mode: click to switch to light -->
+  <svg
+    class="hidden h-5 w-5 dark:block"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.75"
+    aria-hidden="true"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+    ></path>
+  </svg>
+</button>
+
+<script>
+  function currentIsDark(): boolean {
+    return document.documentElement.classList.contains("dark");
+  }
+
+  function syncButtons(isDark: boolean) {
+    document.querySelectorAll("[data-theme-toggle]").forEach((btn) => {
+      btn.setAttribute("aria-pressed", String(isDark));
+    });
+  }
+
+  function setupThemeToggle() {
+    syncButtons(currentIsDark());
+
+    document.querySelectorAll("[data-theme-toggle]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const next = !currentIsDark();
+        document.documentElement.classList.toggle("dark", next);
+        syncButtons(next);
+        try {
+          localStorage.setItem("theme", next ? "dark" : "light");
+        } catch (_) {
+          /* ignore persistence failures */
+        }
+      });
+    });
+
+    // Follow the OS theme until the user makes an explicit choice.
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (event) => {
+      if (localStorage.getItem("theme")) return;
+      document.documentElement.classList.toggle("dark", event.matches);
+      syncButtons(event.matches);
+    });
+  }
+
+  setupThemeToggle();
+</script>
