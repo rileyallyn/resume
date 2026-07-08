@@ -1,7 +1,16 @@
 {
-    "compatibility_flags": [
-      "nodejs_compat"
-    ],
-    // Set this to today's date
-    "compatibility_date": "2026-04-10"
-  }
+	"name": "resume-builder",
+	"compatibility_flags": [
+		"nodejs_compat",
+		"global_fetch_strictly_public"
+	],
+	// Set this to today's date
+	"compatibility_date": "2026-04-10",
+	"assets": {
+		"binding": "ASSETS",
+		"directory": "./dist"
+	},
+	"observability": {
+		"enabled": true
+	}
+}

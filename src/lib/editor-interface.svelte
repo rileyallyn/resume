@@ -37,6 +37,9 @@
   let branchSlug = $state("");
   let branchTarget = $state<any>(null);
 
+  let deleteConfirmOpen = $state(false);
+  let deleteTarget = $state<any>(null);
+
   function showAlert(message: string) {
     alertMessage = message;
     alertOpen = true;
@@ -85,6 +88,37 @@
   function cancelBranchDialog() {
     branchOpen = false;
     branchTarget = null;
+  }
+
+  function openDeleteDialog(resume: any) {
+    deleteTarget = resume;
+    deleteConfirmOpen = true;
+  }
+
+  async function confirmDelete() {
+    const resume = deleteTarget;
+    if (!resume) return;
+
+    deleteConfirmOpen = false;
+    deleteTarget = null;
+    isLoading = true;
+
+    try {
+      const res = await fetch(`/api/resumes/${resume.id}`, {
+        method: "DELETE"
+      });
+
+      if (res.ok) {
+        resumes = resumes.filter((r: any) => r.id !== resume.id);
+        if (selectedResume?.id === resume.id) {
+          selectedResume = null;
+        }
+      } else {
+        showAlert("Failed to delete resume: " + (await res.text()));
+      }
+    } finally {
+      isLoading = false;
+    }
   }
 
   function applyTailorSuggestion() {
@@ -153,6 +187,28 @@
       });
       if (!res.ok) {
         showAlert("Failed to save item: " + (await res.text()));
+      }
+    } finally {
+      isLoading = false;
+    }
+  }
+
+  function reorderItems(sectionId: string, newItems: any[]) {
+    const section = selectedResume.sections.find((s: any) => s.id === sectionId);
+    if (section) {
+      section.items = newItems;
+    }
+  }
+
+  async function saveReorder(sectionId: string, items: any[]) {
+    isLoading = true;
+    try {
+      const res = await fetch(`/api/resumes/sections/${sectionId}/reorder`, {
+        method: "POST",
+        body: JSON.stringify({ itemIds: items.map((i: any) => i.id) })
+      });
+      if (!res.ok) {
+        showAlert("Failed to save new order: " + (await res.text()));
       }
     } finally {
       isLoading = false;
@@ -230,6 +286,7 @@
       disabled={isLoading}
       onSelect={selectResume}
       onBranch={openBranchDialog}
+      onDelete={openDeleteDialog}
     />
 
     <div class="min-h-0 min-w-0 flex-1 overflow-y-auto bg-zinc-50 dark:bg-zinc-950">
@@ -241,15 +298,17 @@
             <EditorAiPanel bind:jobDescription bind:selectedProvider />
 
             <div class="space-y-10">
-              {#each selectedResume.sections as section}
+              {#each selectedResume.sections as section (section.id)}
                 <EditorResumeSection
                   {section}
-                  isLoading={isLoading}
+                  {isLoading}
                   onTailor={tailorItem}
                   onSave={saveItem}
                   onToggleVisibility={toggleSectionVisibility}
                   onAddItem={addItem}
                   onToggleItemVisibility={toggleItemVisibility}
+                  onReorder={reorderItems}
+                  onReorderFinalize={saveReorder}
                 />
               {/each}
             </div>
@@ -298,32 +357,59 @@
       <AlertDialogHeader>
         <AlertDialogTitle>New branch</AlertDialogTitle>
         <AlertDialogDescription>
-          Create a copy of <span class="font-medium text-foreground">{branchTarget?.name ?? "this resume"}</span> with a new name and URL slug.
+          Create a copy of <span class="text-foreground font-medium">{branchTarget?.name ?? "this resume"}</span> with a new
+          name and URL slug.
         </AlertDialogDescription>
       </AlertDialogHeader>
       <div class="grid gap-3 py-1">
         <div class="grid gap-1.5">
-          <label class="text-left text-xs font-medium text-zinc-600 dark:text-zinc-400" for="branch-dialog-name">Name</label>
+          <label class="text-left text-xs font-medium text-zinc-600 dark:text-zinc-400" for="branch-dialog-name"
+            >Name</label
+          >
           <input
             id="branch-dialog-name"
             bind:value={branchName}
             placeholder="e.g. Google SE"
-            class="w-full rounded-md border border-zinc-200 bg-white px-2.5 py-2 text-sm text-zinc-900 shadow-sm focus:border-violet-400 focus:outline-none focus:ring-2 focus:ring-violet-500/25 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
+            class="w-full rounded-md border border-zinc-200 bg-white px-2.5 py-2 text-sm text-zinc-900 shadow-sm focus:border-violet-400 focus:ring-2 focus:ring-violet-500/25 focus:outline-none dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
           />
         </div>
         <div class="grid gap-1.5">
-          <label class="text-left text-xs font-medium text-zinc-600 dark:text-zinc-400" for="branch-dialog-slug">Slug</label>
+          <label class="text-left text-xs font-medium text-zinc-600 dark:text-zinc-400" for="branch-dialog-slug"
+            >Slug</label
+          >
           <input
             id="branch-dialog-slug"
             bind:value={branchSlug}
             placeholder="e.g. google-se"
-            class="w-full rounded-md border border-zinc-200 bg-white px-2.5 py-2 font-mono text-sm text-zinc-900 shadow-sm focus:border-violet-400 focus:outline-none focus:ring-2 focus:ring-violet-500/25 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
+            class="w-full rounded-md border border-zinc-200 bg-white px-2.5 py-2 font-mono text-sm text-zinc-900 shadow-sm focus:border-violet-400 focus:ring-2 focus:ring-violet-500/25 focus:outline-none dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
           />
         </div>
       </div>
       <AlertDialogFooter>
         <AlertDialogCancel onclick={cancelBranchDialog}>Cancel</AlertDialogCancel>
         <AlertDialogAction onclick={submitBranchFromDialog}>Create branch</AlertDialogAction>
+      </AlertDialogFooter>
+    </AlertDialogContent>
+  </AlertDialog>
+
+  <AlertDialog bind:open={deleteConfirmOpen}>
+    <AlertDialogContent>
+      <AlertDialogHeader>
+        <AlertDialogTitle>Delete Resume</AlertDialogTitle>
+        <AlertDialogDescription>
+          Are you sure you want to delete <span class="text-foreground font-medium"
+            >{deleteTarget?.name ?? "this resume"}</span
+          >? This action cannot be undone.
+        </AlertDialogDescription>
+      </AlertDialogHeader>
+      <AlertDialogFooter>
+        <AlertDialogCancel onclick={() => (deleteConfirmOpen = false)}>Cancel</AlertDialogCancel>
+        <AlertDialogAction
+          class="bg-red-600 hover:bg-red-700 dark:bg-red-600 dark:hover:bg-red-700"
+          onclick={confirmDelete}
+        >
+          Delete
+        </AlertDialogAction>
       </AlertDialogFooter>
     </AlertDialogContent>
   </AlertDialog>

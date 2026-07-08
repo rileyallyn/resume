@@ -23,9 +23,9 @@
   function setResumeToolbarSpacer(active: boolean) {
     if (typeof document === "undefined") return;
     if (active) {
-      document.documentElement.style.setProperty("--resume-export-toolbar", "3.75rem");
+      document.documentElement.style.setProperty("--resume-export-toolbar-bottom", "3.75rem");
     } else {
-      document.documentElement.style.removeProperty("--resume-export-toolbar");
+      document.documentElement.style.removeProperty("--resume-export-toolbar-bottom");
     }
   }
 
@@ -75,19 +75,26 @@
 {#if authed}
   <div
     use:portal
-    class="no-print pointer-events-none fixed inset-x-0 top-0 isolate z-[10000] pt-[env(safe-area-inset-top,0px)] print:hidden"
+    class="no-print pointer-events-none fixed inset-x-0 bottom-0 isolate z-[10000] pb-[env(safe-area-inset-bottom,0px)] print:hidden"
     role="toolbar"
     aria-label="Resume export"
   >
     <div
-      class="pointer-events-auto flex w-full items-center justify-end gap-3 border-b border-zinc-200/90 bg-white/90 px-4 py-2.5 shadow-[0_4px_24px_rgb(0,0,0,0.08)] backdrop-blur-md sm:px-8 dark:border-zinc-700/90 dark:bg-zinc-950/90"
+      class="pointer-events-auto mx-auto mb-4 flex w-fit items-center justify-center gap-3 rounded-2xl border border-zinc-200/90 bg-white/90 px-4 py-2.5 shadow-[0_8px_32px_rgb(0,0,0,0.12)] backdrop-blur-md dark:border-zinc-700/90 dark:bg-zinc-950/90"
     >
       <button
         type="button"
         onclick={exportPdf}
-        class="inline-flex shrink-0 items-center gap-2 rounded-lg bg-zinc-900 px-3 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-zinc-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white dark:focus-visible:ring-offset-zinc-950"
+        class="inline-flex shrink-0 items-center gap-2 rounded-lg bg-zinc-900 px-3 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-zinc-800 focus-visible:ring-2 focus-visible:ring-violet-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:outline-none dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white dark:focus-visible:ring-offset-zinc-950"
       >
-        <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+        <svg
+          class="h-4 w-4 shrink-0"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.75"
+          aria-hidden="true"
+        >
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
