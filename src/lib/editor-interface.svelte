@@ -14,6 +14,7 @@
     EditorAiPanel,
     EditorEmptyState,
     EditorResumeExplorer,
+    EditorResumeHeader,
     EditorResumeSection,
     EditorToolbar
   } from "$lib/editor";
@@ -193,6 +194,26 @@
     }
   }
 
+  async function saveHeader() {
+    if (!selectedResume) return;
+    isLoading = true;
+    try {
+      const { full_name, location, website_url, email, summary } = selectedResume;
+      const res = await fetch(`/api/resumes/${selectedResume.id}`, {
+        method: "POST",
+        body: JSON.stringify({ full_name, location, website_url, email, summary })
+      });
+      if (res.ok) {
+        const match = resumes.find((r: any) => r.id === selectedResume.id);
+        if (match) match.full_name = full_name;
+      } else {
+        showAlert("Failed to save header: " + (await res.text()));
+      }
+    } finally {
+      isLoading = false;
+    }
+  }
+
   function reorderItems(sectionId: string, newItems: any[]) {
     const section = selectedResume.sections.find((s: any) => s.id === sectionId);
     if (section) {
@@ -296,6 +317,8 @@
 
           <div class="space-y-8 px-5 py-6 sm:px-8 sm:py-8 lg:px-10 xl:px-12">
             <EditorAiPanel bind:jobDescription bind:selectedProvider />
+
+            <EditorResumeHeader resume={selectedResume} {isLoading} onSave={saveHeader} />
 
             <div class="space-y-10">
               {#each selectedResume.sections as section (section.id)}

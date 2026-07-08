@@ -41,6 +41,27 @@ export const GET: APIRoute = async ({ params, request, cookies }) => {
   });
 };
 
+export const POST: APIRoute = async ({ params, request, cookies }) => {
+  const { id } = params;
+  const supabase = createSupabaseServerClient({ request, cookies });
+
+  // Check auth
+  const {
+    data: { session }
+  } = await supabase.auth.getSession();
+  if (!session) return new Response("Unauthorized", { status: 401 });
+
+  const body = await request.json();
+  const allowed = ["full_name", "location", "website_url", "email", "summary"];
+  const updates = Object.fromEntries(Object.entries(body).filter(([k]) => allowed.includes(k)));
+
+  const { error } = await supabase.from("resumes").update(updates).eq("id", id);
+
+  if (error) return new Response(error.message, { status: 500 });
+
+  return new Response("OK", { status: 200 });
+};
+
 export const DELETE: APIRoute = async ({ params, request, cookies }) => {
   const { id } = params;
   const supabase = createSupabaseServerClient({ request, cookies });
