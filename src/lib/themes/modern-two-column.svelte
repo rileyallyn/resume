@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { formatDateRange } from "./format-date-range";
+
   const { resume } = $props<{ resume: any }>();
 
   const SIDEBAR_TITLES = ["Skills", "Education"];
@@ -39,7 +41,8 @@
           <div class="flex flex-col text-left">
             {#if item.subtitle}<span class="font-semibold">{item.subtitle}</span>{/if}
             {#if item.title}<span class="italic">{item.title}</span>{/if}
-            {#if item.date_range}<span class="text-gray-500 dark:text-gray-400">{item.date_range}</span>{/if}
+            {#if item.date_range}<span class="text-gray-500 dark:text-gray-400">{formatDateRange(item.date_range)}</span
+              >{/if}
             {#if item.content && item.content.length > 0}
               <div class="mt-0.5">
                 <span class="font-semibold italic">Relevant Courses: </span>
@@ -57,20 +60,20 @@
       <div class="flex flex-col gap-4">
         {#each section.items.filter((i: any) => !i.is_hidden) as item (item.id)}
           <div class="flex flex-col text-left">
-            <div class="flex flex-col justify-between sm:flex-row sm:items-baseline">
+            <div class="flex flex-col flex-wrap items-baseline gap-x-1 gap-y-0.5 sm:flex-row">
               <span class="font-semibold">
                 {#if item.title}{item.title}{/if}{#if item.title && item.subtitle}
-                  &middot;
+                  &nbsp;&middot;&nbsp;
                 {/if}{#if item.subtitle}<span class="font-normal text-gray-700 dark:text-gray-300">{item.subtitle}</span
                   >{/if}
               </span>
-              {#if item.date_range}<span class="text-gray-500 dark:text-gray-400">{item.date_range}</span>{/if}
+              {#if item.date_range}<span class="text-gray-500 dark:text-gray-400"
+                  >{#if item.title || item.subtitle}&nbsp;&middot;&nbsp;{/if}{formatDateRange(item.date_range)}</span
+                >{/if}
             </div>
-            <ul class="mt-1 flex flex-col gap-1 pl-4">
+            <ul class="mt-1 flex list-none flex-col gap-1">
               {#each item.content as bullet (bullet)}
-                <li class="relative before:absolute before:-left-4 before:text-indigo-500 before:content-['\25AA']">
-                  {bullet}
-                </li>
+                <li>• {bullet}</li>
               {/each}
             </ul>
           </div>
@@ -80,16 +83,18 @@
       <div class="flex flex-col gap-3">
         {#each section.items.filter((i: any) => !i.is_hidden) as item (item.id)}
           <div class="flex flex-col text-left">
-            <div class="flex justify-between font-semibold">
+            <div class="flex flex-wrap items-baseline gap-x-1 gap-y-0.5 font-semibold">
               <span>{item.title || ""}</span>
-              <span class="text-gray-500 dark:text-gray-400">{item.date_range || ""}</span>
+              {#if item.date_range}<span class="text-gray-500 dark:text-gray-400"
+                  >{#if item.title}&nbsp;&middot;&nbsp;{/if}{formatDateRange(item.date_range)}</span
+                >{/if}
             </div>
             {#if item.subtitle}
               <div class="italic">{item.subtitle}</div>
             {/if}
-            <ul class="mt-1 list-disc pl-5">
+            <ul class="mt-1 list-none space-y-1">
               {#each item.content as bullet (bullet)}
-                <li>{bullet}</li>
+                <li>• {bullet}</li>
               {/each}
             </ul>
           </div>
