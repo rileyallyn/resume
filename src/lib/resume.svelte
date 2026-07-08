@@ -53,8 +53,8 @@
         </ol>
       {:else if section.title === "Education"}
         {#each section.items.filter((i) => !i.is_hidden) as item (item.id)}
-          <ol class="flex flex-col font-bold sm:flex-row sm:space-x-1" id="pipe-list">
-            {#if item.subtitle}<li>{item.subtitle}</li>{/if}
+          <ol class="flex flex-col font-bold sm:flex-row sm:space-x-1">
+            {#if item.subtitle}<li>{item.subtitle},</li>{/if}
             {#if item.date_range}<li>{item.date_range}</li>{/if}
           </ol>
           {#if item.title}
