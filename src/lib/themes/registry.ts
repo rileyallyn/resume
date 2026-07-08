@@ -10,7 +10,11 @@ export const themeMeta = {
   },
   modern: {
     label: "Modern",
-    description: "Accent headings, roomier spacing"
+    description: "Single-column ATS-friendly layout with formatted dates"
+  },
+  "modern-two-column": {
+    label: "Modern (Two Column)",
+    description: "Two-column layout with contact, skills, and education in a sidebar"
   }
 } as const;
 

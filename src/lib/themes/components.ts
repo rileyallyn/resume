@@ -3,8 +3,10 @@
 import type { ThemeKey } from "./registry";
 import Classic from "./classic.svelte";
 import Modern from "./modern.svelte";
+import ModernTwoColumn from "./modern-two-column.svelte";
 
 export const themeComponents: Record<ThemeKey, typeof Classic> = {
   classic: Classic,
-  modern: Modern
+  modern: Modern,
+  "modern-two-column": ModernTwoColumn
 };
