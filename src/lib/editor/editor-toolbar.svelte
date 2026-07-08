@@ -1,5 +1,11 @@
 <script lang="ts">
-  const { name, slug } = $props<{ name: string; slug: string }>();
+  const { name, slug, theme, themeOptions, onThemeChange } = $props<{
+    name: string;
+    slug: string;
+    theme: string;
+    themeOptions: { value: string; label: string }[];
+    onThemeChange: (theme: string) => void;
+  }>();
 </script>
 
 <div
@@ -12,8 +18,20 @@
     <p class="mt-1 font-mono text-xs text-zinc-500 dark:text-zinc-400">/{slug}</p>
   </div>
   <div class="flex flex-wrap items-center gap-2 self-start">
+    <label class="flex items-center gap-2 text-xs font-medium text-zinc-600 dark:text-zinc-400">
+      <span class="sr-only sm:not-sr-only">Theme</span>
+      <select
+        value={theme}
+        onchange={(e) => onThemeChange((e.currentTarget as HTMLSelectElement).value)}
+        class="rounded-xl border border-zinc-200 bg-white px-3 py-2 text-xs font-semibold text-zinc-800 shadow-sm transition hover:border-zinc-300 focus-visible:ring-2 focus-visible:ring-violet-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:outline-none dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:border-zinc-600 dark:focus-visible:ring-offset-zinc-900"
+      >
+        {#each themeOptions as option (option.value)}
+          <option value={option.value}>{option.label}</option>
+        {/each}
+      </select>
+    </label>
     <a
-      href={`/?branch=${slug}`}
+      href={`/?branch=${slug}&theme=${theme}`}
       target="_blank"
       rel="noopener noreferrer"
       class="inline-flex items-center justify-center gap-2 rounded-xl border border-zinc-200 bg-white px-3.5 py-2 text-xs font-semibold text-zinc-800 shadow-sm transition hover:border-zinc-300 hover:bg-zinc-50 focus-visible:ring-2 focus-visible:ring-violet-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:outline-none dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:border-zinc-600 dark:hover:bg-zinc-800 dark:focus-visible:ring-offset-zinc-900"
@@ -30,7 +48,7 @@
       </svg>
     </a>
     <a
-      href={`/?branch=${slug}&export=pdf`}
+      href={`/?branch=${slug}&theme=${theme}&export=pdf`}
       target="_blank"
       rel="noopener noreferrer"
       class="inline-flex items-center justify-center gap-2 rounded-xl border border-zinc-200 bg-white px-3.5 py-2 text-xs font-semibold text-zinc-800 shadow-sm transition hover:border-zinc-300 hover:bg-zinc-50 focus-visible:ring-2 focus-visible:ring-violet-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:outline-none dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:border-zinc-600 dark:hover:bg-zinc-800 dark:focus-visible:ring-offset-zinc-900"

@@ -18,6 +18,7 @@
     EditorResumeSection,
     EditorToolbar
   } from "$lib/editor";
+  import { DEFAULT_THEME, themeOptions } from "$lib/themes/registry";
 
   const { initialResumes } = $props<{ initialResumes: any[] }>();
   let resumes = $state(untrack(() => [...(initialResumes ?? [])]));
@@ -194,6 +195,29 @@
     }
   }
 
+  async function changeTheme(theme: string) {
+    if (!selectedResume) return;
+    const previous = selectedResume.theme;
+    if (theme === previous) return;
+    selectedResume.theme = theme;
+    isLoading = true;
+    try {
+      const res = await fetch(`/api/resumes/${selectedResume.id}`, {
+        method: "POST",
+        body: JSON.stringify({ theme })
+      });
+      if (res.ok) {
+        const match = resumes.find((r: any) => r.id === selectedResume.id);
+        if (match) match.theme = theme;
+      } else {
+        selectedResume.theme = previous;
+        showAlert("Failed to update theme: " + (await res.text()));
+      }
+    } finally {
+      isLoading = false;
+    }
+  }
+
   async function saveHeader() {
     if (!selectedResume) return;
     isLoading = true;
@@ -313,7 +337,13 @@
     <div class="min-h-0 min-w-0 flex-1 overflow-y-auto bg-zinc-50 dark:bg-zinc-950">
       {#if selectedResume}
         <div class="min-h-full {isLoading ? 'opacity-90' : ''}">
-          <EditorToolbar name={selectedResume.name} slug={selectedResume.slug} />
+          <EditorToolbar
+            name={selectedResume.name}
+            slug={selectedResume.slug}
+            theme={selectedResume.theme ?? DEFAULT_THEME}
+            {themeOptions}
+            onThemeChange={changeTheme}
+          />
 
           <div class="space-y-8 px-5 py-6 sm:px-8 sm:py-8 lg:px-10 xl:px-12">
             <EditorAiPanel bind:jobDescription bind:selectedProvider />

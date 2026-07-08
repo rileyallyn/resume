@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Section from "./section.svelte";
+  import Section from "../section.svelte";
 
   const { resume } = $props<{ resume: any }>();
 </script>
@@ -33,11 +33,11 @@
     </p>
   {/if}
 
-  {#each resume.sections.filter((s) => !s.is_hidden) as section (section.id)}
+  {#each resume.sections.filter((s: any) => !s.is_hidden) as section (section.id)}
     <Section id={section.title.toLowerCase()} title={section.title}>
       {#if section.title === "Skills"}
         <ol class="mt-2 flex flex-col gap-1">
-          {#each section.items.filter((i) => !i.is_hidden) as item (item.id)}
+          {#each section.items.filter((i: any) => !i.is_hidden) as item (item.id)}
             <li class="flex flex-col">
               <h3 class="text-md text-left font-bold">{item.title}:</h3>
               <ul
@@ -52,7 +52,7 @@
           {/each}
         </ol>
       {:else if section.title === "Education"}
-        {#each section.items.filter((i) => !i.is_hidden) as item (item.id)}
+        {#each section.items.filter((i: any) => !i.is_hidden) as item (item.id)}
           <ol class="flex flex-col font-bold sm:flex-row sm:space-x-1">
             {#if item.subtitle}<li>{item.subtitle},</li>{/if}
             {#if item.date_range}<li>{item.date_range}</li>{/if}
@@ -78,7 +78,7 @@
         {/each}
       {:else if section.title === "Experience"}
         <ol class="spacing-y-1 mt-1 flex flex-col text-left">
-          {#each section.items.filter((i) => !i.is_hidden) as item (item.id)}
+          {#each section.items.filter((i: any) => !i.is_hidden) as item (item.id)}
             <li>
               <ol class="inline-flex flex-row flex-wrap space-x-1 font-bold" id="pipe-list-bp">
                 {#if item.title}<li>{item.title}</li>{/if}
@@ -98,7 +98,7 @@
       {:else}
         <!-- Generic fallback for any other sections -->
         <ol class="mt-1 flex flex-col text-left">
-          {#each section.items.filter((i) => !i.is_hidden) as item (item.id)}
+          {#each section.items.filter((i: any) => !i.is_hidden) as item (item.id)}
             <li class="mb-2">
               <div class="flex justify-between font-bold">
                 <span>{item.title || ""}</span>

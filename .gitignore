@@ -30,3 +30,10 @@ dist-ssr
 
 .wrangler
 .env
+
+# Supabase local development data
+supabase/.temp/
+supabase/functions/.env
+
+# Local DB data (only if you configured custom local storage targets)
+supabase/.branches/

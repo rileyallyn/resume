@@ -42,7 +42,8 @@ export const POST: APIRoute = async ({ params, request, cookies }) => {
         location: sourceResume.location,
         website_url: sourceResume.website_url,
         email: sourceResume.email,
-        summary: sourceResume.summary
+        summary: sourceResume.summary,
+        theme: sourceResume.theme
       }
     ])
     .select()
@@ -66,7 +67,7 @@ export const POST: APIRoute = async ({ params, request, cookies }) => {
 
     if (sectionError) continue;
 
-    const itemsToInsert = section.items.map((item) => ({
+    const itemsToInsert = section.items.map((item: any) => ({
       section_id: newSection.id,
       title: item.title,
       subtitle: item.subtitle,

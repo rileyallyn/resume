@@ -1,34 +1,39 @@
 ---
 import "../styles/global.css";
-import Resume from "../lib/resume.svelte";
 import ResumePdfExport from "../lib/resume-pdf-export.svelte";
 import { createSupabaseServerClient } from "../lib/supabase-server";
+import { themeComponents } from "../lib/themes/components";
+import { resolveTheme } from "../lib/themes/registry";
 
 const supabase = createSupabaseServerClient({ request: Astro.request, cookies: Astro.cookies });
 
 const { searchParams } = Astro.url;
 const branchSlug = searchParams.get("branch") || "main";
 
-const { data: { user } } = await supabase.auth.getUser();
+const {
+  data: { user }
+} = await supabase.auth.getUser();
 
 const { data: resume, error: resumeError } = await supabase
   .from("resumes")
-  .select(`
+  .select(
+    `
     *,
     sections:resume_sections(
       *,
       items:resume_items(*)
     )
-  `)
+  `
+  )
   .eq("slug", branchSlug)
   .single();
 
 // Sort sections and items by display_order
 if (resume && resume.sections) {
-  resume.sections.sort((a, b) => a.display_order - b.display_order);
-  resume.sections.forEach(section => {
+  resume.sections.sort((a: any, b: any) => a.display_order - b.display_order);
+  resume.sections.forEach((section: any) => {
     if (section.items) {
-      section.items.sort((a, b) => a.display_order - b.display_order);
+      section.items.sort((a: any, b: any) => a.display_order - b.display_order);
     }
   });
 }
@@ -37,6 +42,10 @@ if (resumeError || !resume) {
   // Fallback if not found, or show error
   return Astro.redirect("/404");
 }
+
+// Pick the renderer: ?theme= overrides the saved theme (handy for previewing).
+const themeKey = resolveTheme(searchParams.get("theme") ?? resume.theme);
+const ThemeComponent = themeComponents[themeKey];
 ---
 
 <html lang="en" class="dark" data-resume-page>
@@ -47,16 +56,13 @@ if (resumeError || !resume) {
     <title>{resume.full_name} | Resume</title>
     <meta property="og:type" content="website" />
     <meta property="og:title" content={`${resume.full_name} | Resume`} />
-    <meta
-      property="og:description"
-      content={`👋 hey, i'm ${resume.full_name.split(' ')[0]}. This is my resume`}
-    />
+    <meta property="og:description" content={`👋 hey, i'm ${resume.full_name.split(" ")[0]}. This is my resume`} />
     <meta name="darkreader-lock" />
   </head>
   <body class="p-1">
     <ResumePdfExport user={user} client:load />
     <div id="resume-root" class="resume-print-root mx-auto">
-      <Resume resume={resume} />
+      <ThemeComponent resume={resume} />
     </div>
   </body>
 </html>

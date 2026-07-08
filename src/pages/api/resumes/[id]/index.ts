@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
 import { createSupabaseServerClient } from "../../../../lib/supabase-server";
+import { resolveTheme } from "../../../../lib/themes/registry";
 
 export const GET: APIRoute = async ({ params, request, cookies }) => {
   const { id } = params;
@@ -52,8 +53,13 @@ export const POST: APIRoute = async ({ params, request, cookies }) => {
   if (!session) return new Response("Unauthorized", { status: 401 });
 
   const body = await request.json();
-  const allowed = ["full_name", "location", "website_url", "email", "summary"];
+  const allowed = ["full_name", "location", "website_url", "email", "summary", "theme"];
   const updates = Object.fromEntries(Object.entries(body).filter(([k]) => allowed.includes(k)));
+
+  // Normalize the theme to a known key so an unknown value can't be persisted.
+  if ("theme" in updates) {
+    updates.theme = resolveTheme(updates.theme as string);
+  }
 
   const { error } = await supabase.from("resumes").update(updates).eq("id", id);
 

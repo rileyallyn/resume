@@ -16,6 +16,7 @@ CREATE TABLE resumes (
     website_url TEXT DEFAULT 'https://allyn.dev',
     email TEXT DEFAULT 'riley@rileysmith.me',
     summary TEXT, -- Motivation summary
+    theme TEXT NOT NULL DEFAULT 'classic', -- Rendering theme key (see src/lib/themes)
 
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
@@ -57,3 +58,6 @@ CREATE POLICY "Public read items" ON resume_items FOR SELECT USING (true);
 CREATE POLICY "Admin write resumes" ON resumes FOR ALL TO authenticated USING (true) WITH CHECK (true);
 CREATE POLICY "Admin write sections" ON resume_sections FOR ALL TO authenticated USING (true) WITH CHECK (true);
 CREATE POLICY "Admin write items" ON resume_items FOR ALL TO authenticated USING (true) WITH CHECK (true);
+
+-- Migration for existing databases: add the theme column if it doesn't exist.
+ALTER TABLE resumes ADD COLUMN IF NOT EXISTS theme TEXT NOT NULL DEFAULT 'classic';
