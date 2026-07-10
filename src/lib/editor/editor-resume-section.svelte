@@ -86,6 +86,7 @@
         <EditorResumeItem
           {item}
           {isLoading}
+          hasLongDescription={section.title === "Experience"}
           onTailor={(i) => onTailor(item, i)}
           onSave={() => onSave(item)}
           onToggleVisibility={() => onToggleItemVisibility(item)}

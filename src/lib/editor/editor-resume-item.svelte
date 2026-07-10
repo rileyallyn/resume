@@ -4,16 +4,20 @@
     isLoading = false,
     onTailor,
     onSave,
-    onToggleVisibility
+    onToggleVisibility,
+    hasLongDescription
   } = $props<{
     item: any;
     isLoading?: boolean;
     onTailor: (bulletIndex: number) => void;
     onSave: () => void;
     onToggleVisibility: () => void;
+    hasLongDescription: boolean;
   }>();
 
   let isExpanded = $state(false);
+
+  import { TrashIcon } from "phosphor-svelte";
 </script>
 
 <article
@@ -130,30 +134,35 @@
           <ul class="space-y-3" role="list">
             {#each item.content as _bullet, i (i)}
               <li class="flex flex-col gap-2 sm:flex-row sm:items-stretch">
-                <textarea
-                  bind:value={item.content[i]}
-                  class="min-h-18 flex-1 resize-y rounded-xl border border-zinc-200/90 bg-white px-3 py-2.5 text-sm leading-relaxed text-zinc-800 shadow-inner shadow-zinc-950/4 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/25 focus:outline-none dark:border-zinc-700 dark:bg-zinc-950/50 dark:text-zinc-200"
-                  rows="2"
-                ></textarea>
-                <div class="flex shrink-0 flex-row gap-2 sm:w-28 sm:flex-col">
+                <div class="flex items-center gap-2">
                   <button
                     type="button"
-                    onclick={() => onTailor(i)}
-                    class="flex-1 rounded-lg bg-violet-600 px-2 py-2 text-[10px] font-bold tracking-wide text-white uppercase shadow-sm transition hover:bg-violet-500 focus-visible:ring-2 focus-visible:ring-violet-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-50 focus-visible:outline-none disabled:opacity-50 sm:flex-none dark:focus-visible:ring-offset-zinc-950"
-                    disabled={isLoading}
-                  >
-                    Tailor
-                  </button>
-                  <button
-                    type="button"
+                    title="Remove bullet point"
                     onclick={() => {
                       item.content = item.content.filter((_: string, idx: number) => idx !== i);
                     }}
-                    class="flex-1 rounded-lg border border-red-200 bg-red-50 px-2 py-2 text-[10px] font-bold tracking-wide text-red-700 uppercase transition hover:bg-red-100 focus-visible:ring-2 focus-visible:ring-red-500/40 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-50 focus-visible:outline-none sm:flex-none dark:border-red-900/60 dark:bg-red-950/40 dark:text-red-300 dark:hover:bg-red-950/60 dark:focus-visible:ring-offset-zinc-950"
+                    class="flex-1 rounded-xl border border-red-200 bg-red-50 p-1 font-bold tracking-wide text-red-700 uppercase transition hover:bg-red-100 focus-visible:ring-2 focus-visible:ring-red-500/40 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-50 focus-visible:outline-none sm:flex-none dark:border-red-900/60 dark:bg-red-950/40 dark:text-red-300 dark:hover:bg-red-950/60 dark:focus-visible:ring-offset-zinc-950"
                   >
-                    Remove
+                    <TrashIcon size={16} />
                   </button>
                 </div>
+                <textarea
+                  bind:value={item.content[i]}
+                  class="field-sizing-content flex-1 resize-y rounded-xl border border-zinc-200/90 bg-white px-3 py-2.5 text-sm leading-relaxed text-zinc-800 shadow-inner shadow-zinc-950/4 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/25 focus:outline-none dark:border-zinc-700 dark:bg-zinc-950/50 dark:text-zinc-200"
+                  rows="2"
+                ></textarea>
+                {#if hasLongDescription}
+                  <div class="flex shrink-0 flex-row gap-2 sm:w-28 sm:flex-col">
+                    <button
+                      type="button"
+                      onclick={() => onTailor(i)}
+                      class="my-auto flex-1 rounded-lg bg-violet-600 px-2 py-2 text-[10px] font-bold tracking-wide text-white uppercase shadow-sm transition hover:bg-violet-500 focus-visible:ring-2 focus-visible:ring-violet-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-50 focus-visible:outline-none disabled:opacity-50 sm:flex-none dark:focus-visible:ring-offset-zinc-950"
+                      disabled={isLoading}
+                    >
+                      Tailor
+                    </button>
+                  </div>
+                {/if}
               </li>
             {/each}
           </ul>
