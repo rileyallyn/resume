@@ -37,9 +37,6 @@
 
     <div class="mt-5 space-y-4">
       <div>
-        <label for="job-desc" class="mb-1.5 block text-xs font-medium text-zinc-600 dark:text-zinc-400"
-          >Target job description</label
-        >
         <textarea
           id="job-desc"
           bind:value={jobDescription}
