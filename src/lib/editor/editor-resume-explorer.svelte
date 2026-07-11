@@ -20,11 +20,6 @@
   class="flex max-h-52 min-h-0 w-full shrink-0 flex-col border-b border-zinc-200/90 bg-zinc-100/95 md:h-full md:max-h-none md:w-52 md:border-r md:border-b-0 dark:border-zinc-800 dark:bg-zinc-900/95"
   aria-label="Resume explorer"
 >
-  <div class="shrink-0 border-b border-zinc-200/80 px-3 py-2 dark:border-zinc-800">
-    <p class="text-[10px] font-semibold tracking-widest text-zinc-500 uppercase dark:text-zinc-400">Explorer</p>
-    <p class="mt-0.5 text-xs font-medium text-zinc-800 dark:text-zinc-200">Resumes</p>
-    <p class="text-[10px] text-zinc-500 dark:text-zinc-500">{resumes?.length ?? 0} open in workspace</p>
-  </div>
   <ul class="min-h-0 flex-1 space-y-0.5 overflow-y-auto p-1.5" role="list">
     {#each resumes as resume (resume.id)}
       <li>

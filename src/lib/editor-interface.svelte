@@ -25,7 +25,7 @@
   let selectedResume = $state<any>(null);
   let isLoading = $state(false);
   let jobDescription = $state("");
-  let selectedProvider = $state("openai");
+  let selectedProvider = $state("google/gemini-3.5-flash");
 
   let alertOpen = $state(false);
   let alertMessage = $state("");
@@ -345,7 +345,7 @@
             onThemeChange={changeTheme}
           />
 
-          <div class="space-y-8 px-5 py-6 sm:px-8 sm:py-8 lg:px-10 xl:px-12">
+          <div class="space-y-5 px-5 py-2 sm:px-8 sm:py-4 lg:px-10 xl:px-12">
             <EditorAiPanel bind:jobDescription bind:selectedProvider />
 
             <EditorResumeHeader resume={selectedResume} {isLoading} onSave={saveHeader} />

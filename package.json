@@ -26,16 +26,13 @@
     ]
   },
   "dependencies": {
-    "@ai-sdk/anthropic": "^3.0.95",
-    "@ai-sdk/google": "^3.0.90",
-    "@ai-sdk/openai": "^3.0.82",
-    "@astrojs/cloudflare": "^14.1.1",
+    "@astrojs/cloudflare": "^14.1.2",
     "@astrojs/svelte": "^9.0.1",
+    "@openrouter/sdk": "^0.13.42",
     "@supabase/ssr": "^0.10.3",
-    "@supabase/supabase-js": "^2.110.1",
+    "@supabase/supabase-js": "^2.110.2",
     "@tailwindcss/vite": "^4.3.2",
-    "ai": "^6.0.221",
-    "astro": "^7.0.6",
+    "astro": "^7.0.7",
     "svelte": "^5.56.4",
     "svelte-dnd-action": "^0.9.70",
     "tailwindcss": "^4.3.2"
@@ -50,23 +47,23 @@
     "bits-ui": "^2.18.1",
     "clsx": "^2.1.1",
     "dotenv": "latest",
-    "eslint": "^10.6.0",
+    "eslint": "^10.7.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-svelte": "^3.20.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
     "phosphor-svelte": "^3.1.0",
-    "prettier": "^3.9.4",
+    "prettier": "^3.9.5",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-svelte": "^3.5.2",
     "prettier-plugin-tailwindcss": "^0.7.4",
-    "shadcn-svelte": "^1.3.0",
+    "shadcn-svelte": "^1.4.1",
     "svelte-eslint-parser": "^1.8.0",
     "tailwind-merge": "^3.6.0",
     "tailwind-variants": "^3.2.2",
     "tsx": "latest",
     "tw-animate-css": "^1.4.0",
     "typescript": "^6.0.3",
-    "wrangler": "^4.108.0"
+    "wrangler": "^4.110.0"
   }
 }
